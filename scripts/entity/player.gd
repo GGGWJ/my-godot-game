@@ -4,6 +4,7 @@ extends Entity
 @export var speed:float = 500
 @export var weapon:Sprite2D
 @onready var ability_controller:AbilityController = $AbilityController
+@onready var footstep_effect: FootstepEffect = $FootstepEffect
 @export var footstep_clip:AudioConfig
 @export var footstep_interval = 0.3
 
@@ -65,6 +66,7 @@ func _handle_movement(delta: float):
 
 	if n_movement.length() > 0:
 		is_moving = true
+		footstep_effect.play()
 		if turning_cooldown <= 0:
 			if horizontal > 0:
 				animated_sprite.flip_h = false
