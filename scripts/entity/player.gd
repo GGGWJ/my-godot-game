@@ -1,0 +1,80 @@
+class_name Player
+extends Entity
+
+@export var speed:float = 500
+@export var weapon:Sprite2D
+@onready var ability_controller:AbilityController = $AbilityController
+
+var is_moving:bool = false
+var weapon_right:Vector2
+var weapon_left:Vector2
+var turning_cooldown:float = 0.0
+var spawn_location:Vector2
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	# super._ready() 核心作用是在子类中执行父类的_ready()逻辑，避免父类初始化代码被覆盖；
+	# 子类重写父类函数后，父类的对应函数不会自动执行，必须手动用super.函数名()调用；
+	# 调用顺序建议放在子类函数开头，保证 “基础逻辑先执行，专属逻辑后执行”。
+	super._ready()
+
+	# 将玩家实体添加到“player”组，以便敌人可以轻松找到玩家实例
+	add_to_group("player")
+	weapon_right = weapon.position
+	weapon_left = -weapon.position
+	spawn_location = position
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if is_dead:return
+
+	#移动函数
+	_handle_movement(delta)
+	#技能函数
+	_handle_abilities()
+	#移动动画函数
+	_handle_animation()
+
+func _handle_abilities():
+	if Input.is_action_just_pressed("ability_1"):
+		ability_controller.trigger_ability_by_idx(0)
+	elif Input.is_action_just_pressed("ability_2"):
+		ability_controller.trigger_ability_by_idx(1)
+	elif Input.is_action_just_pressed("ability_3"):
+		ability_controller.trigger_ability_by_idx(2)
+
+func _handle_movement(delta: float):
+	is_moving = false
+	turning_cooldown = max(turning_cooldown - delta, 0)
+
+	#处理移动逻辑
+	var horizontal = Input.get_axis("left","right")
+	var vertical = Input.get_axis("up","down")
+
+	var movement = Vector2(horizontal, vertical)
+	var n_movement = movement.normalized()
+
+	self.position += n_movement * speed * delta
+
+	if n_movement.length() > 0:
+		is_moving = true
+		if turning_cooldown <= 0:
+			if horizontal > 0:
+				animated_sprite.flip_h = false
+			elif horizontal < 0:
+				animated_sprite.flip_h = true
+	else:
+		is_moving = false
+
+
+func _handle_animation():
+	if is_moving:
+		play_animation(AnimationWrapper.new("run"))
+	else:
+		play_animation(AnimationWrapper.new("idle"))
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if current_anim != null and current_anim.name == "die":
+		var scene = get_parent() as PlayScene
+		scene.handle_game_over(self)

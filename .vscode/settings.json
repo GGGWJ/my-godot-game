@@ -1,0 +1,13 @@
+{
+  "files.exclude": {
+    "**/*.gd.uid": true
+  },
+  "search.exclude": {
+    "**/*.gd.uid": true
+  }
+}{
+    "godotTools.editorPath.godot4": "h:\\Godot_v4.5.1-stable_win64.exe",
+    "files.exclude": {
+        "**/.gd.uid": true
+    }
+}

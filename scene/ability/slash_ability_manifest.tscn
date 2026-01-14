@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=3 uid="uid://b1ukbthaa71ng"]
+
+[ext_resource type="Script" uid="uid://bf7ji112xle3j" path="res://scripts/ability/manifest/slash_manifest.gd" id="1_kljft"]
+[ext_resource type="Texture2D" uid="uid://ceq30wtt12414" path="res://assets/Pixel Art Animations - Warrior (FREE)/VFX 4/sprite-sheet.png" id="1_qyx4o"]
+[ext_resource type="Texture2D" uid="uid://btss54gq656ud" path="res://assets/SlashEffect/NPT100.png" id="2_oe4e3"]
+[ext_resource type="Texture2D" uid="uid://bjw47731yy2gx" path="res://assets/SlashEffect/NPT101.png" id="3_lnphn"]
+[ext_resource type="Texture2D" uid="uid://cfggrvs3o8w4u" path="res://assets/SlashEffect/NPT102.png" id="4_tkgv5"]
+[ext_resource type="Texture2D" uid="uid://d0feud232wwvu" path="res://assets/SlashEffect/NPT103.png" id="5_cynk2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xcvh"]
+atlas = ExtResource("1_qyx4o")
+region = Rect2(128, 384, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7hwns"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_oe4e3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lnphn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_tkgv5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_cynk2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xcvh")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="SlashAbilityManifest" type="Node2D"]
+z_index = 100
+script = ExtResource("1_kljft")
+rotation_offset = -165.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_7hwns")
+autoplay = "default"
+frame = 4
+frame_progress = 1.0

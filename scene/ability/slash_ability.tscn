@@ -1,0 +1,41 @@
+[gd_scene load_steps=9 format=3 uid="uid://cdqlge8i51rl8"]
+
+[ext_resource type="Script" uid="uid://mju3ujqfhuf8" path="res://scripts/ability/core/ability.gd" id="1_se5wr"]
+[ext_resource type="Script" uid="uid://ci7f4rcjapq7t" path="res://scripts/ability/component/ability_spawn_manifest.gd" id="2_e41qq"]
+[ext_resource type="PackedScene" uid="uid://b1ukbthaa71ng" path="res://scene/ability/slash_ability_manifest.tscn" id="3_7vueh"]
+[ext_resource type="Script" uid="uid://bcw8tr5210k33" path="res://scripts/ability/component/ability_push_back.gd" id="4_1oiae"]
+[ext_resource type="Script" uid="uid://vgoe2ulg7p2l" path="res://scripts/ability/component/ability_turn_to_mouse.gd" id="5_wm4fp"]
+[ext_resource type="Script" uid="uid://geu3um4cgjis" path="res://scripts/ability/component/ability_get_targets.gd" id="6_37852"]
+[ext_resource type="Script" uid="uid://d2hub3oknd0sn" path="res://scripts/ability/component/ability_component_group.gd" id="6_ifkij"]
+[ext_resource type="Script" uid="uid://1f1iy64navpu" path="res://scripts/ability/component/ability_deal_damage.gd" id="7_37852"]
+
+[node name="SlashAbility" type="Node"]
+script = ExtResource("1_se5wr")
+cooldown = 0.5
+
+[node name="SpawnManifest" type="Node" parent="."]
+script = ExtResource("2_e41qq")
+manifest_scene = ExtResource("3_7vueh")
+set_as_child = true
+
+[node name="Pushback" type="Node" parent="."]
+script = ExtResource("4_1oiae")
+duration = 0.1
+
+[node name="TurnToMouse" type="Node" parent="."]
+script = ExtResource("5_wm4fp")
+metadata/_custom_type_script = "uid://vgoe2ulg7p2l"
+
+[node name="DealDamageGroup" type="Node" parent="."]
+script = ExtResource("6_ifkij")
+exec_delay = 0.2
+
+[node name="AbilityGetTargets" type="Node" parent="DealDamageGroup"]
+script = ExtResource("6_37852")
+radius = 50.0
+metadata/_custom_type_script = "uid://c7a68h0mek6hj"
+
+[node name="AbilityDealDamage" type="Node" parent="DealDamageGroup"]
+script = ExtResource("7_37852")
+damage = 14.0
+metadata/_custom_type_script = "uid://1f1iy64navpu"
