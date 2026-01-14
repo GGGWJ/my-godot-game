@@ -3,6 +3,32 @@ extends Node
 
 @export var screen_transition:ColorRect
 
+var fps_label: Label
+
+func _ready() -> void:
+	# 限制游戏最大帧率为 60，保证流畅度并节省性能
+	Engine.max_fps = 60
+	
+	# 动态创建一个 Label 来显示帧率
+	fps_label = Label.new()
+	fps_label.set_anchors_preset(Control.PRESET_TOP_LEFT)
+	fps_label.offset_left = 10
+	fps_label.offset_top = 10
+	fps_label.add_theme_color_override("font_color", Color.YELLOW)
+	fps_label.add_theme_font_size_override("font_size", 24)
+	
+	# 获取或创建一个 CanvasLayer (确保 UI 始终在最上层)
+	var canvas_layer = get_node_or_null("CanvasLayer")
+	if canvas_layer == null:
+		canvas_layer = CanvasLayer.new()
+		add_child(canvas_layer)
+		
+	canvas_layer.add_child(fps_label)
+
+func _process(_delta: float) -> void:
+	if fps_label != null:
+		fps_label.text = "FPS: %d" % Engine.get_frames_per_second()
+
 func handle_game_over(player:Player):
 	var tween = fade_in_overlay()
 	await tween.finished

@@ -17,6 +17,12 @@ config/features=PackedStringArray("4.5", "GL Compatibility")
 [autoload]
 
 FloatText="*res://scripts/autoload/float_text.gd"
+AudioController="*res://scene/autoload/audio_controller.tscn"
+
+[display]
+
+window/size/viewport_width=1980
+window/size/viewport_height=1080
 
 [input]
 

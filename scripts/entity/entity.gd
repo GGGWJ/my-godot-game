@@ -65,8 +65,6 @@ func get_height() -> float:
 
 func _show_damage_popup(damage:float):
 	# 获取动画第一帧的高度，用于计算文字显示位置
-	var anim = animated_sprite.animation
-	var frame_tex = animated_sprite.sprite_frames.get_frame_texture(anim, 0)
 	var height = get_height()
 	var spawn_pos = Vector2(position.x, position.y - (height / 2))
 	FloatText.show_damage_text(str(damage),spawn_pos,damage_text_color)

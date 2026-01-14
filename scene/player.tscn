@@ -1,12 +1,23 @@
-[gd_scene load_steps=30 format=3 uid="uid://658v4co7jd07"]
+[gd_scene load_steps=44 format=3 uid="uid://658v4co7jd07"]
 
 [ext_resource type="Texture2D" uid="uid://1mot2lsduok2" path="res://assets/AnimationSheet_Character.png" id="1_7j80i"]
 [ext_resource type="Script" uid="uid://becf2c5pbtjn7" path="res://scripts/entity/player.gd" id="1_7omxl"]
 [ext_resource type="Shader" uid="uid://d36k77idc43f0" path="res://shaders/entity.gdshader" id="2_hp4bs"]
+[ext_resource type="AudioStream" uid="uid://ctcx2lqo7vnxy" path="res://assets/Sound/Super Dialogue Audio Pack v1/Step 2 - Audio Files/2 - Confirmation/Female/Karen Cenon/confirmation_1_karen.wav" id="2_ihjo1"]
+[ext_resource type="AudioStream" uid="uid://fxwcrkns7ryr" path="res://assets/Sound/Super Dialogue Audio Pack v1/Step 2 - Audio Files/2 - Confirmation/Female/Karen Cenon/confirmation_2_karen.wav" id="3_dk1vr"]
 [ext_resource type="Script" uid="uid://dml80icbdg7ls" path="res://scripts/ability/core/ability_controller.gd" id="3_u4c7w"]
-[ext_resource type="Script" uid="uid://mju3ujqfhuf8" path="res://scripts/ability/core/ability.gd" id="4_6sl1v"]
+[ext_resource type="AudioStream" uid="uid://dpoy3uwtga34d" path="res://assets/Sound/Super Dialogue Audio Pack v1/Step 2 - Audio Files/2 - Confirmation/Female/Karen Cenon/confirmation_3_karen.wav" id="4_34jf3"]
 [ext_resource type="PackedScene" uid="uid://cdqlge8i51rl8" path="res://scene/ability/slash_ability.tscn" id="4_hsluc"]
+[ext_resource type="Script" uid="uid://clo7b3t1pq370" path="res://scripts/resources/audio_config.gd" id="5_u7b46"]
+[ext_resource type="PackedScene" uid="uid://cjd3rf4cwyok1" path="res://scene/ability/weapon_throw_ability.tscn" id="6_hp4bs"]
 [ext_resource type="Texture2D" uid="uid://uy6223ctvcdh" path="res://assets/Weapons/Sprites/lightsaber_blue.png" id="6_oh5ij"]
+
+[sub_resource type="Resource" id="Resource_j4wxg"]
+script = ExtResource("5_u7b46")
+audio_streams = Array[AudioStream]([ExtResource("2_ihjo1"), ExtResource("3_dk1vr"), ExtResource("4_34jf3")])
+volume_db = -1.0
+bus = &"sfx"
+metadata/_custom_type_script = "uid://clo7b3t1pq370"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g2vtq"]
 shader = ExtResource("2_hp4bs")
@@ -93,6 +104,38 @@ region = Rect2(192, 96, 32, 32)
 atlas = ExtResource("1_7j80i")
 region = Rect2(224, 96, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4wxg"]
+atlas = ExtResource("1_7j80i")
+region = Rect2(0, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bup7g"]
+atlas = ExtResource("1_7j80i")
+region = Rect2(32, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ja17"]
+atlas = ExtResource("1_7j80i")
+region = Rect2(64, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4iqv"]
+atlas = ExtResource("1_7j80i")
+region = Rect2(96, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42h83"]
+atlas = ExtResource("1_7j80i")
+region = Rect2(128, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iuf2t"]
+atlas = ExtResource("1_7j80i")
+region = Rect2(160, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jrjdb"]
+atlas = ExtResource("1_7j80i")
+region = Rect2(192, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kk4ol"]
+atlas = ExtResource("1_7j80i")
+region = Rect2(224, 256, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_hsluc"]
 animations = [{
 "frames": [{
@@ -169,20 +212,51 @@ animations = [{
 "loop": true,
 "name": &"run",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j4wxg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bup7g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ja17")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4iqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42h83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iuf2t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jrjdb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kk4ol")
+}],
+"loop": false,
+"name": &"throw",
+"speed": 10.0
 }]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hp4bs"]
 
 [node name="player" type="Node2D" node_paths=PackedStringArray("weapon")]
 script = ExtResource("1_7omxl")
 speed = 100.0
 weapon = NodePath("Weapon")
+footstep_clip = SubResource("Resource_j4wxg")
 max_health = 99999.0
-damage_text_color = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 material = SubResource("ShaderMaterial_g2vtq")
 sprite_frames = SubResource("SpriteFrames_hsluc")
-animation = &"idle"
+animation = &"throw"
 autoplay = "idle"
 
 [node name="AbilityController" type="Node" parent="."]
@@ -190,11 +264,7 @@ script = ExtResource("3_u4c7w")
 
 [node name="Slash" parent="AbilityController" instance=ExtResource("4_hsluc")]
 
-[node name="Fireball" type="Node" parent="AbilityController"]
-script = ExtResource("4_6sl1v")
-
-[node name="Reflect" type="Node" parent="AbilityController"]
-script = ExtResource("4_6sl1v")
+[node name="WeaponThrowAbility" parent="AbilityController" instance=ExtResource("6_hp4bs")]
 
 [node name="Weapon" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -202,5 +272,13 @@ position = Vector2(8.549998, 0.45000172)
 rotation = 0.7853982
 scale = Vector2(0.7603429, 0.52464014)
 texture = ExtResource("6_oh5ij")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_hp4bs")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

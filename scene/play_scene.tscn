@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://b0itg3kq1ytwa"]
+[gd_scene load_steps=21 format=4 uid="uid://b0itg3kq1ytwa"]
 
 [ext_resource type="Script" uid="uid://j0hdd2opi1f8" path="res://scripts/utils/follow_camera.gd" id="1_6ypx3"]
 [ext_resource type="PackedScene" uid="uid://658v4co7jd07" path="res://scene/player.tscn" id="1_oxvvw"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cgq8wr81n0i2q" path="res://scene/skeleton.tscn" id="3_6lhxs"]
 [ext_resource type="Texture2D" uid="uid://b44bnxj1e4lb0" path="res://assets/Cute_Fantasy_Free/Tiles/Cliff_Tile.png" id="3_ljj0d"]
 [ext_resource type="Texture2D" uid="uid://dpvh5nka3u0dn" path="res://assets/Cute_Fantasy_Free/Tiles/Path_Tile.png" id="4_lg5wg"]
+[ext_resource type="PackedScene" uid="uid://fyxlj564g3m8" path="res://scene/demon.tscn" id="5_4ukpk"]
 [ext_resource type="Texture2D" uid="uid://bqkv13q5ao5s6" path="res://assets/Cute_Fantasy_Free/Outdoor decoration/Outdoor_Decor_Free.png" id="5_st5yg"]
 [ext_resource type="Texture2D" uid="uid://diy5ecfns7yym" path="res://assets/Cute_Fantasy_Free/Outdoor decoration/Bridge_Wood.png" id="8_lft4v"]
 [ext_resource type="Texture2D" uid="uid://tda5kdl7pqbp" path="res://assets/Cute_Fantasy_Free/Outdoor decoration/Oak_Tree_Small.png" id="9_4ukpk"]
@@ -255,7 +256,6 @@ follow_target = NodePath("../player")
 [node name="player" parent="." instance=ExtResource("1_oxvvw")]
 z_index = 100
 position = Vector2(8, 48)
-damage_text_color = Color(0.69803923, 0.13333334, 0.13333334, 1)
 
 [node name="Skeleton" parent="." instance=ExtResource("3_6lhxs")]
 position = Vector2(-152, 31.999996)
@@ -270,16 +270,22 @@ position = Vector2(18.999985, -89.99999)
 max_health = 30.0
 
 [node name="Skeleton4" parent="." instance=ExtResource("3_6lhxs")]
-position = Vector2(-48.000008, 32)
+position = Vector2(-40.000008, -7.999996)
 max_health = 30.0
 
 [node name="Skeleton5" parent="." instance=ExtResource("3_6lhxs")]
-position = Vector2(64.000015, 1.9073486e-06)
+position = Vector2(72.00001, -7.999996)
 max_health = 30.0
 
 [node name="Skeleton6" parent="." instance=ExtResource("3_6lhxs")]
-position = Vector2(-15.999996, -24.000008)
+position = Vector2(-47.999992, 71.99999)
 max_health = 30.0
+
+[node name="Demon" parent="." instance=ExtResource("5_4ukpk")]
+position = Vector2(136, 88)
+
+[node name="Demon2" parent="." instance=ExtResource("5_4ukpk")]
+position = Vector2(104, 120)
 
 [node name="Map" type="Node2D" parent="."]
 metadata/_edit_lock_ = true

@@ -10,5 +10,5 @@ func activate(context: AbilityContext):
 
 	_activate(context)
 
-func _activate(context: AbilityContext):
+func _activate(_context: AbilityContext):
 	print("AbilityComponent %s" % self.name)

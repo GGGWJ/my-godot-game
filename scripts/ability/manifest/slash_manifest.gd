@@ -42,7 +42,7 @@ func _activate(context: AbilityContext):
 
 		cloned_weapon.rotation = weapon_angle + PI / 2
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 
 	##动画播放完毕后删除该节点，frame_progress可以用来计算动画播放的进度，范围是0.0-1.0，1.0表示动画播放完毕
 	if animated_sprite.frame_progress >=1.0:

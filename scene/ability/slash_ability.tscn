@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cdqlge8i51rl8"]
+[gd_scene load_steps=19 format=3 uid="uid://cdqlge8i51rl8"]
 
 [ext_resource type="Script" uid="uid://mju3ujqfhuf8" path="res://scripts/ability/core/ability.gd" id="1_se5wr"]
 [ext_resource type="Script" uid="uid://ci7f4rcjapq7t" path="res://scripts/ability/component/ability_spawn_manifest.gd" id="2_e41qq"]
@@ -7,7 +7,27 @@
 [ext_resource type="Script" uid="uid://vgoe2ulg7p2l" path="res://scripts/ability/component/ability_turn_to_mouse.gd" id="5_wm4fp"]
 [ext_resource type="Script" uid="uid://geu3um4cgjis" path="res://scripts/ability/component/ability_get_targets.gd" id="6_37852"]
 [ext_resource type="Script" uid="uid://d2hub3oknd0sn" path="res://scripts/ability/component/ability_component_group.gd" id="6_ifkij"]
+[ext_resource type="Script" uid="uid://devatwyxkem5y" path="res://scripts/ability/component/ability_play_sound.gd" id="6_ycjrp"]
 [ext_resource type="Script" uid="uid://1f1iy64navpu" path="res://scripts/ability/component/ability_deal_damage.gd" id="7_37852"]
+[ext_resource type="AudioStream" uid="uid://vg8u4tmsngwr" path="res://assets/Sound/Super Dialogue Audio Pack v1/Step 2 - Audio Files/7 - Damage/Female/Karen Cenon/damage_1_karen.wav" id="7_htjim"]
+[ext_resource type="AudioStream" uid="uid://be8f4dv6ihk1d" path="res://assets/Sound/Super Dialogue Audio Pack v1/Step 2 - Audio Files/7 - Damage/Female/Karen Cenon/damage_2_karen.wav" id="8_uytme"]
+[ext_resource type="AudioStream" uid="uid://w47dyosyafyq" path="res://assets/Sound/Super Dialogue Audio Pack v1/Step 2 - Audio Files/7 - Damage/Female/Karen Cenon/damage_3_karen.wav" id="9_0riq3"]
+[ext_resource type="Script" uid="uid://clo7b3t1pq370" path="res://scripts/resources/audio_config.gd" id="10_3ldfj"]
+[ext_resource type="AudioStream" uid="uid://ws0p61672too" path="res://assets/Sound/Super Dialogue Audio Pack v1/Step 2 - Audio Files/1 - Completion/Female/Karen Cenon/completion_1_karen.wav" id="14_3ldfj"]
+[ext_resource type="AudioStream" uid="uid://cbdko380422l" path="res://assets/Sound/Super Dialogue Audio Pack v1/Step 2 - Audio Files/1 - Completion/Female/Karen Cenon/completion_2_karen.wav" id="15_tj2ge"]
+[ext_resource type="AudioStream" uid="uid://c0xcpupf3341l" path="res://assets/Sound/Super Dialogue Audio Pack v1/Step 2 - Audio Files/1 - Completion/Female/Karen Cenon/completion_3_karen.wav" id="16_o05fh"]
+
+[sub_resource type="Resource" id="Resource_tj2ge"]
+script = ExtResource("10_3ldfj")
+audio_streams = Array[AudioStream]([ExtResource("7_htjim"), ExtResource("8_uytme"), ExtResource("9_0riq3")])
+bus = &"sfx"
+metadata/_custom_type_script = "uid://clo7b3t1pq370"
+
+[sub_resource type="Resource" id="Resource_s0a0c"]
+script = ExtResource("10_3ldfj")
+audio_streams = Array[AudioStream]([ExtResource("14_3ldfj"), ExtResource("15_tj2ge"), ExtResource("16_o05fh")])
+bus = &"sfx"
+metadata/_custom_type_script = "uid://clo7b3t1pq370"
 
 [node name="SlashAbility" type="Node"]
 script = ExtResource("1_se5wr")
@@ -26,6 +46,10 @@ duration = 0.1
 script = ExtResource("5_wm4fp")
 metadata/_custom_type_script = "uid://vgoe2ulg7p2l"
 
+[node name="PlaySound" type="Node" parent="."]
+script = ExtResource("6_ycjrp")
+audio_config = SubResource("Resource_tj2ge")
+
 [node name="DealDamageGroup" type="Node" parent="."]
 script = ExtResource("6_ifkij")
 exec_delay = 0.2
@@ -33,9 +57,13 @@ exec_delay = 0.2
 [node name="AbilityGetTargets" type="Node" parent="DealDamageGroup"]
 script = ExtResource("6_37852")
 radius = 50.0
-metadata/_custom_type_script = "uid://c7a68h0mek6hj"
 
 [node name="AbilityDealDamage" type="Node" parent="DealDamageGroup"]
 script = ExtResource("7_37852")
 damage = 14.0
 metadata/_custom_type_script = "uid://1f1iy64navpu"
+
+[node name="playImpactSound" type="Node" parent="DealDamageGroup/AbilityDealDamage"]
+script = ExtResource("6_ycjrp")
+audio_config = SubResource("Resource_s0a0c")
+metadata/_custom_type_script = "uid://devatwyxkem5y"

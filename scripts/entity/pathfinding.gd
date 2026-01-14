@@ -4,7 +4,9 @@ extends Node2D
 signal velocity_computed(safe_velocity: Vector2)
 
 @export var avoidance_enabled: bool = true
-@export var radius: float = 12.0 # 避障半径，根据您的怪物大小调整
+@export var radius: float = 20.0 # 避障半径，根据您的怪物大小调整
+@export var max_neighbors: int = 4 # 优化：降低检测邻居数量 (原6)
+@export var neighbor_distance: float = 50.0 # 优化：降低检测邻居范围 (原100)
 
 var agent: NavigationAgent2D
 
@@ -13,8 +15,8 @@ func _ready() -> void:
 	agent = NavigationAgent2D.new()
 	agent.avoidance_enabled = avoidance_enabled
 	agent.radius = radius
-	agent.neighbor_distance = 100 # 考虑多远范围内的邻居
-	agent.max_neighbors = 6 # 最多考虑多少个邻居
+	agent.neighbor_distance = neighbor_distance # 考虑多远范围内的邻居
+	agent.max_neighbors = max_neighbors # 最多考虑多少个邻居
 	agent.time_horizon = 0.5 # 避障预判时间
 
 	# 关键点：这里就像是“接电话线”。

@@ -18,13 +18,15 @@ var _last_path_update_time: float = 0.0
 const PATH_UPDATE_INTERVAL: float = 0.2
 
 func _ready() -> void:
-	# super._ready() 核心作用是在子类中执行父类的_ready()逻辑，避免父类初始化代码被覆盖；
-
-	# 子类重写父类函数后，父类的对应函数不会自动执行，必须手动用super.函数名()调用；
-	# 调用顺序建议放在子类函数开头，保证 “基础逻辑先执行，专属逻辑后执行”。
+	# super._ready() 核心作用是在子类中执行父类的_ready()逻辑，避免父类初始化代码被覆盖
 	super._ready()
+	
+	# 优化：随机化初始更新时间，防止所有敌人在同一帧进行寻路计算（避免卡顿波峰）
+	_last_path_update_time = randf_range(0, PATH_UPDATE_INTERVAL)
+	
 	last_position = position
 	player = get_tree().get_first_node_in_group("player") as Player
+	add_to_group("enemy")
 	
 	if pathfinding != null:
 		# 连接寻路组件的信号，接收避障后的安全速度
@@ -51,7 +53,7 @@ func _physics_process(delta: float) -> void:
 				_last_path_update_time = 0.0
 			
 			# 2. 判断是否需要移动
-			if position.distance_to(player.position) > stop_distance:
+			if position.distance_squared_to(player.position) > stop_distance * stop_distance:
 				# 3. 获取下一步的路径点
 				var next_path_pos = pathfinding.get_next_path_position()
 				direction = (next_path_pos - global_position).normalized()
@@ -67,7 +69,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			# 降级处理：如果没有 Pathfinding 组件，就直线移动（无避障）
 			direction = (player.position - self.position).normalized()
-			if position.distance_to(player.position) > stop_distance:
+			if position.distance_squared_to(player.position) > stop_distance * stop_distance:
 				position += direction * speed * delta
 			else:
 				ability_controller.trigger_ability_by_idx(0)
@@ -128,10 +130,14 @@ func _face_target(dir:Vector2) -> void:
 
 func get_height() -> float:
 	if collision_shape != null:
-		var shape = collision_shape.shape as CapsuleShape2D
-
-		# * scale.y 是为了考虑实体缩放比例对高度的影响
-		return shape.height * scale.y
+		var shape = collision_shape.shape
+		if shape is CapsuleShape2D:
+			# * scale.y 是为了考虑实体缩放比例对高度的影响
+			return shape.height * scale.y
+		elif shape is CircleShape2D:
+			return shape.radius * scale.y
+		else:
+			return super.get_height() * scale.y
 	else:
 		return super.get_height() * scale.y
 

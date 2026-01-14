@@ -4,12 +4,15 @@ extends Entity
 @export var speed:float = 500
 @export var weapon:Sprite2D
 @onready var ability_controller:AbilityController = $AbilityController
+@export var footstep_clip:AudioConfig
+@export var footstep_interval = 0.3
 
 var is_moving:bool = false
 var weapon_right:Vector2
 var weapon_left:Vector2
 var turning_cooldown:float = 0.0
 var spawn_location:Vector2
+var footstep_timer:float = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -35,6 +38,9 @@ func _process(delta: float) -> void:
 	_handle_abilities()
 	#移动动画函数
 	_handle_animation()
+	# 脚步音效
+	_handle_footstep_sound(delta)
+
 
 func _handle_abilities():
 	if Input.is_action_just_pressed("ability_1"):
@@ -66,6 +72,15 @@ func _handle_movement(delta: float):
 				animated_sprite.flip_h = true
 	else:
 		is_moving = false
+
+func _handle_footstep_sound(delta: float):
+	if is_moving:
+		footstep_timer += delta
+		if footstep_timer >= footstep_interval:
+			AudioController.play(footstep_clip, global_position)
+			footstep_timer = 0.0
+	else:
+		footstep_timer = 0.0
 
 
 func _handle_animation():
