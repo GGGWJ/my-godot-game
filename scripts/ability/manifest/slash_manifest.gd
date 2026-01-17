@@ -52,7 +52,7 @@ func _process(_delta: float) -> void:
 func _finish_attack():
 	self.hide()
 	if cloned_weapon:
-		await get_tree().create_timer(0.1).timeout
+		await get_tree().create_timer(0.1,false).timeout
 		cloned_weapon.queue_free()
 
 	queue_free()

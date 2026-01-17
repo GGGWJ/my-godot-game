@@ -78,7 +78,7 @@ func _show_damage_taken_effect():
 	if animated_sprite.material != null:
 		for i in 2:
 			animated_sprite.material.set_shader_parameter("is_hurt", true)
-			await get_tree().create_timer(0.05).timeout
+			await get_tree().create_timer(0.05,false).timeout
 			animated_sprite.material.set_shader_parameter("is_hurt", false)
-			await get_tree().create_timer(0.05).timeout
+			await get_tree().create_timer(0.05,false).timeout
 	

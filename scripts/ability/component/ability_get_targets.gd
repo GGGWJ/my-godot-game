@@ -51,7 +51,7 @@ func create_debug_circle(p_radius: float):
 		return line
 
 func destroy_line(line:Line2D,seconds:float):
-		await get_tree().create_timer(seconds).timeout
+		await get_tree().create_timer(seconds,false).timeout
 
 		if line != null:
 			line.queue_free()
