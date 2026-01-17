@@ -39,6 +39,7 @@ func handle_game_over(player:Player):
 
 	player.is_dead = false
 	player.current_health = player.max_health
+	player.health_bar.set_health(player.current_health, player.max_health)
 
 func fade_out_overlay():
 	var tween = create_tween()

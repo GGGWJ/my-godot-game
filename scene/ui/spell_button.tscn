@@ -1,10 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://df8ks0sgvfok0"]
+[gd_scene load_steps=7 format=3 uid="uid://df8ks0sgvfok0"]
 
 [ext_resource type="Texture2D" uid="uid://b316pah8b8ul7" path="res://assets/UI/Stone_UI_Sprite_Sheet.png" id="1_stfrp"]
 [ext_resource type="Script" uid="uid://dy72ixgmeu7pt" path="res://scripts/utils/spell_button.gd" id="2_7lo0i"]
 [ext_resource type="FontVariation" uid="uid://cv0ka2ag52bmp" path="res://resources/damage_font.tres" id="3_j57iu"]
-
-[sub_resource type="Shortcut" id="Shortcut_j57iu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_22d1p"]
 atlas = ExtResource("1_stfrp")
@@ -24,7 +22,6 @@ custom_minimum_size = Vector2(128, 128)
 offset_top = -1.0
 offset_right = 128.0
 offset_bottom = 127.0
-shortcut = SubResource("Shortcut_j57iu")
 texture_normal = SubResource("AtlasTexture_22d1p")
 stretch_mode = 0
 script = ExtResource("2_7lo0i")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://658v4co7jd07"]
+[gd_scene load_steps=47 format=3 uid="uid://658v4co7jd07"]
 
 [ext_resource type="Texture2D" uid="uid://1mot2lsduok2" path="res://assets/AnimationSheet_Character.png" id="1_7j80i"]
 [ext_resource type="Script" uid="uid://becf2c5pbtjn7" path="res://scripts/entity/player.gd" id="1_7omxl"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://clo7b3t1pq370" path="res://scripts/resources/audio_config.gd" id="5_u7b46"]
 [ext_resource type="PackedScene" uid="uid://cjd3rf4cwyok1" path="res://scene/ability/weapon_throw_ability.tscn" id="6_hp4bs"]
 [ext_resource type="Texture2D" uid="uid://uy6223ctvcdh" path="res://assets/Weapons/Sprites/lightsaber_blue.png" id="6_oh5ij"]
+[ext_resource type="PackedScene" uid="uid://bxh4m30iibcn5" path="res://scene/ability/dash_ability.tscn" id="11_34jf3"]
 [ext_resource type="Script" uid="uid://bpuvnxlh6vwu6" path="res://scripts/utils/footstep_effect.gd" id="12_dk1vr"]
 
 [sub_resource type="Resource" id="Resource_j4wxg"]
@@ -271,6 +272,9 @@ script = ExtResource("3_u4c7w")
 [node name="Slash" parent="AbilityController" instance=ExtResource("4_hsluc")]
 
 [node name="WeaponThrowAbility" parent="AbilityController" instance=ExtResource("6_hp4bs")]
+
+[node name="DashAbility" parent="AbilityController" instance=ExtResource("11_34jf3")]
+cooldown = 0.2
 
 [node name="Weapon" type="Sprite2D" parent="."]
 texture_filter = 1

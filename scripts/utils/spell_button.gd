@@ -56,6 +56,7 @@ func set_ability(_ability:Ability):
 	cooldownlabel.text = ""
 
 func _on_pressed() -> void:
+	print("点击了技能按钮")
 	if ability == null: 
 		print("技能没有绑定") 
 		return

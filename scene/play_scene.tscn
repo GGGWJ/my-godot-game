@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://b0itg3kq1ytwa"]
+[gd_scene load_steps=35 format=4 uid="uid://b0itg3kq1ytwa"]
 
 [ext_resource type="Script" uid="uid://j0hdd2opi1f8" path="res://scripts/utils/follow_camera.gd" id="1_6ypx3"]
 [ext_resource type="PackedScene" uid="uid://658v4co7jd07" path="res://scene/player.tscn" id="1_oxvvw"]
@@ -12,6 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://tda5kdl7pqbp" path="res://assets/Cute_Fantasy_Free/Outdoor decoration/Oak_Tree_Small.png" id="9_4ukpk"]
 [ext_resource type="Script" uid="uid://ct1xg3ebyhh8c" path="res://scripts/utils/spell_bar.gd" id="11_22d1p"]
 [ext_resource type="PackedScene" uid="uid://df8ks0sgvfok0" path="res://scene/ui/spell_button.tscn" id="11_y6jde"]
+[ext_resource type="Texture2D" uid="uid://bdfj577y36v26" path="res://assets/UI/Hearts/PNG/basic/background.png" id="13_vsxha"]
+[ext_resource type="Texture2D" uid="uid://u5djxpg3mgww" path="res://assets/UI/Hearts/PNG/basic/border.png" id="14_b6oq2"]
+[ext_resource type="Texture2D" uid="uid://bum08j1bgxo0k" path="res://assets/UI/Hearts/PNG/basic/heart.png" id="15_6635m"]
+[ext_resource type="Script" uid="uid://5txqjo7w8kog" path="res://scripts/utils/player_health_bar.gd" id="16_b6oq2"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_y6jde"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -246,21 +250,37 @@ sources/0 = SubResource("TileSetAtlasSource_os6ff")
 sources/1 = SubResource("TileSetAtlasSource_22d1p")
 sources/2 = SubResource("TileSetAtlasSource_2oann")
 
-[sub_resource type="InputEventKey" id="InputEventKey_22d1p"]
+[sub_resource type="InputEventKey" id="InputEventKey_b6oq2"]
 device = -1
 keycode = 49
 unicode = 49
 
-[sub_resource type="Shortcut" id="Shortcut_22d1p"]
-events = [SubResource("InputEventKey_22d1p")]
+[sub_resource type="Shortcut" id="Shortcut_6635m"]
+events = [SubResource("InputEventKey_b6oq2")]
 
-[sub_resource type="InputEventKey" id="InputEventKey_2oann"]
+[sub_resource type="InputEventKey" id="InputEventKey_fe3mt"]
 device = -1
 keycode = 50
 unicode = 50
 
-[sub_resource type="Shortcut" id="Shortcut_2oann"]
-events = [SubResource("InputEventKey_2oann")]
+[sub_resource type="Shortcut" id="Shortcut_l2qwg"]
+events = [SubResource("InputEventKey_fe3mt")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_6635m"]
+device = -1
+keycode = 51
+unicode = 51
+
+[sub_resource type="Shortcut" id="Shortcut_fe3mt"]
+events = [SubResource("InputEventKey_6635m")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_l2qwg"]
+device = -1
+keycode = 52
+unicode = 52
+
+[sub_resource type="Shortcut" id="Shortcut_o21h6"]
+events = [SubResource("InputEventKey_l2qwg")]
 
 [node name="PlayScene" type="Node2D" node_paths=PackedStringArray("screen_transition")]
 script = ExtResource("1_xhmxe")
@@ -271,10 +291,12 @@ zoom = Vector2(5, 5)
 script = ExtResource("1_6ypx3")
 follow_target = NodePath("../player")
 
-[node name="player" parent="." node_paths=PackedStringArray("spell_bar") instance=ExtResource("1_oxvvw")]
+[node name="player" parent="." node_paths=PackedStringArray("spell_bar", "health_bar") instance=ExtResource("1_oxvvw")]
 z_index = 100
-position = Vector2(8, 48)
+position = Vector2(8, 46)
 spell_bar = NodePath("../CanvasLayer/Control/SpellBar")
+health_bar = NodePath("../CanvasLayer/Control/PlayerHealthBar")
+max_health = 500.0
 
 [node name="Skeleton" parent="." instance=ExtResource("3_6lhxs")]
 position = Vector2(-152, 31.999996)
@@ -385,14 +407,33 @@ layout_mode = 2
 
 [node name="SpellButton" parent="CanvasLayer/Control/SpellBar/MarginContainer/HBoxContainer" instance=ExtResource("11_y6jde")]
 layout_mode = 2
-shortcut = SubResource("Shortcut_22d1p")
+shortcut = SubResource("Shortcut_6635m")
 
 [node name="SpellButton2" parent="CanvasLayer/Control/SpellBar/MarginContainer/HBoxContainer" instance=ExtResource("11_y6jde")]
 layout_mode = 2
-shortcut = SubResource("Shortcut_2oann")
+shortcut = SubResource("Shortcut_l2qwg")
 
 [node name="SpellButton3" parent="CanvasLayer/Control/SpellBar/MarginContainer/HBoxContainer" instance=ExtResource("11_y6jde")]
 layout_mode = 2
+shortcut = SubResource("Shortcut_fe3mt")
 
 [node name="SpellButton4" parent="CanvasLayer/Control/SpellBar/MarginContainer/HBoxContainer" instance=ExtResource("11_y6jde")]
 layout_mode = 2
+shortcut = SubResource("Shortcut_o21h6")
+
+[node name="PlayerHealthBar" type="TextureProgressBar" parent="CanvasLayer/Control"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 40.0
+offset_top = 46.0
+offset_right = 168.0
+offset_bottom = 174.0
+min_value = -30.0
+max_value = 113.0
+value = 50.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_under = ExtResource("13_vsxha")
+texture_over = ExtResource("14_b6oq2")
+texture_progress = ExtResource("15_6635m")
+script = ExtResource("16_b6oq2")

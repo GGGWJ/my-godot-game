@@ -8,6 +8,7 @@ extends Entity
 @export var footstep_clip:AudioConfig
 @export var footstep_interval = 0.3
 @export var spell_bar:SpellBar
+@export var health_bar:PlayerHealthBar
 
 var is_moving:bool = false
 var weapon_right:Vector2
@@ -36,6 +37,11 @@ func _ready() -> void:
 		spell_bar.register_ability(ability, ability_idx)
 
 	EventBus.play_cast_ability.connect(_handle_ability)
+
+	health_bar.set_health(current_health, max_health)
+
+	# 连接玩家生命值变化信号到血条更新函数
+	player_health_changed.connect(health_bar.set_health)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

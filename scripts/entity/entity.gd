@@ -10,6 +10,8 @@ var current_health:float
 
 @onready var animated_sprite:AnimatedSprite2D = $AnimatedSprite2D
 
+signal player_health_changed(current_health: float, max_health: float)
+
 func _ready() -> void:
 	current_health = max_health
 	# 确保每个实体实例都有自己独立的材质，避免多个实体共享同一个材质导致的问题
@@ -28,6 +30,9 @@ func apply_damage(damage:float) -> void:
 	current_health = max(0, current_health)
 	_show_damage_popup(damage)
 	_show_damage_taken_effect()
+
+	# 发送玩家生命值变化信号，用来控制血条更新
+	player_health_changed.emit(current_health, max_health)
 
 	if current_health <= 0:
 		is_dead = true
