@@ -1,24 +1,22 @@
 class_name Enemy
 extends Entity
 
-@export var speed:float = 20
-@export var stop_distance:float = 10
+@onready var ability_controller: AbilityController = $AbilityController
+@onready var collision_shape: CollisionShape2D = $Area2D/HurtboxCollision
+@onready var hit_particles: CPUParticles2D = $HitParticles
+@onready var pathfinding: Pathfinding = $Pathfinding
 
-@onready var ability_controller:AbilityController = $AbilityController
-@onready var collision_shape:CollisionShape2D = $Area2D/CollisionShape2D
-@onready var hit_particles:CPUParticles2D = $HitParticles
-@onready var pathfinding:Pathfinding = $Pathfinding
+var enemy_stats: EnemyStats:
+	get: return stats as EnemyStats
 
-var player:Player
-var velocity:Vector2
-var current_speed:float
-var last_position:Vector2
+var player: Player
+var current_speed: float
+var last_position: Vector2
 
 var _last_path_update_time: float = 0.0
 const PATH_UPDATE_INTERVAL: float = 0.2
 
 func _ready() -> void:
-	# super._ready() 核心作用是在子类中执行父类的_ready()逻辑，避免父类初始化代码被覆盖
 	super._ready()
 	
 	# 优化：随机化初始更新时间，防止所有敌人在同一帧进行寻路计算（避免卡顿波峰）
@@ -33,12 +31,13 @@ func _ready() -> void:
 		pathfinding.velocity_computed.connect(_on_navigation_velocity_computed)
 
 func _physics_process(delta: float) -> void:
-	if is_dead:return
+	super._physics_process(delta)
+	
+	if is_dead: return
 
 	# 当播放高优先级动画（如攻击）时，停止移动逻辑
 	if current_anim != null and current_anim.is_high_priority:
-		if pathfinding != null:
-			pathfinding.set_velocity(Vector2.ZERO)
+		velocity = Vector2.ZERO
 		return
 
 	if player != null:
@@ -52,59 +51,48 @@ func _physics_process(delta: float) -> void:
 				pathfinding.set_target_position(player.global_position)
 				_last_path_update_time = 0.0
 			
-			# 2. 判断是否需要移动
-			if position.distance_squared_to(player.position) > stop_distance * stop_distance:
+			var stop_dist = enemy_stats.stop_distance if enemy_stats else 10.0
+			if position.distance_squared_to(player.global_position) > stop_dist * stop_dist:
 				# 3. 获取下一步的路径点
 				var next_path_pos = pathfinding.get_next_path_position()
 				direction = (next_path_pos - global_position).normalized()
 				
 				# 4. 计算期望速度并提交给避障系统
-				desired_velocity = direction * speed
+				desired_velocity = direction * stats.speed
 				pathfinding.set_velocity(desired_velocity)
 			else:
 				# 到了攻击范围，停止并攻击
-				pathfinding.set_velocity(Vector2.ZERO)
+				velocity = Vector2.ZERO
 				ability_controller.trigger_ability_by_idx(0)
-				_face_target((player.position - position).normalized())
+				_update_direction((player.global_position - global_position).normalized())
 		else:
 			# 降级处理：如果没有 Pathfinding 组件，就直线移动（无避障）
-			direction = (player.position - self.position).normalized()
-			if position.distance_squared_to(player.position) > stop_distance * stop_distance:
-				position += direction * speed * delta
+			direction = (player.global_position - global_position).normalized()
+			var stop_dist = enemy_stats.stop_distance if enemy_stats else 10.0
+			if position.distance_squared_to(player.global_position) > stop_dist * stop_dist:
+				velocity = direction * stats.speed
 			else:
+				velocity = Vector2.ZERO
 				ability_controller.trigger_ability_by_idx(0)
-			_face_target(direction)
+			_update_direction(direction)
 
 	# 动画逻辑依赖 current_speed
-	if pathfinding == null: 
-		# 只有在非导航模式下才手动计算 velocity，
-		# 导航模式下 velocity 在回调中赋值
-		velocity = (position - last_position) / delta
-	
 	current_speed = velocity.length()
-	last_position = position
 	_handle_animation()
 
 # 回调函数：当 NavAgent 计算好避障速度后调用
-func _on_navigation_velocity_computed(safe_velocity: Vector2):
-	# 这个函数会在物理帧中被调用，我们在这里真正移动实体
+func _on_navigation_velocity_computed(safe_velocity: Vector2) -> void:
 	if is_dead: return
 
 	# 再次防止攻击时打滑：如果正在播放高优先级动画，强制忽略位移更新
 	if current_anim != null and current_anim.is_high_priority:
+		velocity = Vector2.ZERO
 		return
 
-	# 这里假设使用的是 Node2D 的 position 移动方式
-	# 注意：在 _physics_process 里调用时，不需要乘 delta，因为 set_velocity 是每帧调用的
-	# 但实际上 velocity_computed 输出的是 速度 (单位/秒)，所以移动位移需要乘 delta
-	
-	var delta = get_physics_process_delta_time()
-	position += safe_velocity * delta
-	
-	velocity = safe_velocity # 更新 Entity 的 velocity 属性供其他逻辑使用
+	velocity = safe_velocity
 	
 	if safe_velocity.length_squared() > 1.0:
-		_face_target(safe_velocity.normalized())
+		_update_direction(safe_velocity.normalized())
 
 # 将 _process 改名为 _handle_animation_unused 或删除，
 # 因为我们将主要逻辑移到了 _physics_process
@@ -118,15 +106,6 @@ func _handle_animation():
 		play_animation(AnimationWrapper.new("idle"))
 	else:
 		play_animation(AnimationWrapper.new("walk"))
-
-func _face_target(dir:Vector2) -> void:
-	# 增加阈值检测，避免在垂直移动或微小抖动时频繁翻转
-	if abs(dir.x) < 0.1: return 
-
-	if not animated_sprite.flip_h and dir.x < 0:
-		animated_sprite.flip_h = true
-	elif animated_sprite.flip_h and dir.x > 0:
-		animated_sprite.flip_h = false
 
 func get_height() -> float:
 	if collision_shape != null:

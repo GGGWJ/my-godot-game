@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://658v4co7jd07"]
+[gd_scene load_steps=49 format=3 uid="uid://658v4co7jd07"]
 
 [ext_resource type="Texture2D" uid="uid://1mot2lsduok2" path="res://assets/AnimationSheet_Character.png" id="1_7j80i"]
 [ext_resource type="Script" uid="uid://becf2c5pbtjn7" path="res://scripts/entity/player.gd" id="1_7omxl"]
@@ -13,12 +13,19 @@
 [ext_resource type="Texture2D" uid="uid://uy6223ctvcdh" path="res://assets/Weapons/Sprites/lightsaber_blue.png" id="6_oh5ij"]
 [ext_resource type="PackedScene" uid="uid://bxh4m30iibcn5" path="res://scenes/ability/dash_ability.tscn" id="11_34jf3"]
 [ext_resource type="Script" uid="uid://bpuvnxlh6vwu6" path="res://scripts/utils/footstep_effect.gd" id="12_dk1vr"]
+[ext_resource type="Script" uid="uid://b4noihxhrlpvq" path="res://scripts/resources/player_stats.gd" id="13_stats"]
 
 [sub_resource type="Resource" id="Resource_j4wxg"]
 script = ExtResource("5_u7b46")
 audio_streams = Array[AudioStream]([ExtResource("2_ihjo1"), ExtResource("3_dk1vr"), ExtResource("4_34jf3")])
 volume_db = -1.0
 bus = &"sfx"
+metadata/_custom_type_script = "uid://clo7b3t1pq370"
+
+[sub_resource type="Resource" id="SubResource_player_stats"]
+script = ExtResource("13_stats")
+speed = 100.0
+damage_text_color = Color(0.698039, 0.133333, 0.133333, 1)
 metadata/_custom_type_script = "uid://clo7b3t1pq370"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g2vtq"]
@@ -252,12 +259,19 @@ _limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 1.5170277), 0.0, 0.0, 0, 0, Vector2(1, 0.49071193), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[node name="player" type="Node2D" node_paths=PackedStringArray("weapon")]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_player"]
+radius = 8.0
+height = 24.0
+
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("weapon")]
 script = ExtResource("1_7omxl")
-speed = 100.0
 weapon = NodePath("Weapon")
 footstep_clip = SubResource("Resource_j4wxg")
-max_health = 99999.0
+stats = SubResource("SubResource_player_stats")
+
+[node name="PhysicsCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_player")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -285,7 +299,7 @@ texture = ExtResource("6_oh5ij")
 
 [node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="HurtboxCollision" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CapsuleShape2D_hp4bs")
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]

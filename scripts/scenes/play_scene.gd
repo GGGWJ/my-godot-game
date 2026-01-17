@@ -8,6 +8,11 @@ var fps_label: Label
 func _ready() -> void:
 	# 限制游戏最大帧率为 60，保证流畅度并节省性能
 	Engine.max_fps = 60
+
+	# 连接玩家死亡信号
+	var player = get_node_or_null("player")
+	if player:
+		player.died.connect(handle_game_over)
 	
 	# 动态创建一个 Label 来显示帧率
 	fps_label = Label.new()
@@ -38,8 +43,8 @@ func handle_game_over(player:Player):
 	await tween.finished
 
 	player.is_dead = false
-	player.current_health = player.max_health
-	player.health_bar.set_health(player.current_health, player.max_health)
+	player.current_health = player.stats.max_health
+	player.health_changed.emit(player.current_health, player.stats.max_health)
 
 func fade_out_overlay():
 	var tween = create_tween()

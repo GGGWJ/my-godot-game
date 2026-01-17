@@ -23,16 +23,18 @@ var binded_key: String:
 		# 先把新值存到内部变量，避免递归
 		_binded_key = key
 		# 同步创建/更新快捷键
-		var shortcut = Shortcut.new()
+		var new_shortcut = Shortcut.new()
 		var input_key = InputEventKey.new()
 		# 注意：unicode_at(0)仅适用于单字符（如"a"），多字符需额外处理
 		if key != "":
 			input_key.keycode = key.unicode_at(0)
-			shortcut.events = [input_key]
+			new_shortcut.events = [input_key]
+			self.shortcut = new_shortcut
+		
 		cooldownlabel.text = ""
 		keybind_label.text = key
 
-func _process(delta: float):
+func _process(_delta: float):
 	if ability == null:
 		return
 	
