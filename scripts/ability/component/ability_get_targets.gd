@@ -31,7 +31,8 @@ func check_colliders_around_position(caster:Entity, p_radius: float) -> Array[En
 			var collider = result.collider
 			var parent = collider.get_parent()
 
-			if parent is Entity:
+			# 核心修复：添加 parent != caster 判断，防止技能伤害到施法者自己
+			if parent is Entity and parent != caster:
 				targets.push_back(parent)
 
 	# call_deferred("destroy_line", line, 0.2)

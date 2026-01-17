@@ -16,9 +16,9 @@ config/features=PackedStringArray("4.5", "GL Compatibility")
 
 [autoload]
 
-ResourceLocatoc="*res://scripts/autoload/resource_locatoc.gd"
+ResourceLocator="*res://scripts/autoload/resource_locator.gd"
 FloatText="*res://scripts/autoload/float_text.gd"
-AudioController="*res://scene/autoload/audio_controller.tscn"
+AudioController="*res://scenes/autoload/audio_controller.tscn"
 EventBus="*res://scripts/autoload/event_bus.gd"
 
 [display]

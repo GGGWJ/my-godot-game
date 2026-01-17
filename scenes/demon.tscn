@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://cf3yl7gk7oo7h" path="res://assets/Flying Demon 2D Pixel Art/Sprites/without_outline/IDLE.png" id="4_ojon3"]
 [ext_resource type="Texture2D" uid="uid://l15gilf3vplc" path="res://assets/Flying Demon 2D Pixel Art/Sprites/without_outline/ATTACK.png" id="5_dc5ud"]
 [ext_resource type="Texture2D" uid="uid://duvhemovfxgjw" path="res://assets/Flying Demon 2D Pixel Art/Sprites/without_outline/FLYING.png" id="6_02e83"]
-[ext_resource type="PackedScene" uid="uid://df7mjlhl8x386" path="res://scene/hit_particles.tscn" id="7_mr2xe"]
+[ext_resource type="PackedScene" uid="uid://df7mjlhl8x386" path="res://scenes/hit_particles.tscn" id="7_mr2xe"]
 [ext_resource type="Script" uid="uid://dml80icbdg7ls" path="res://scripts/ability/core/ability_controller.gd" id="8_3pxp0"]
-[ext_resource type="PackedScene" uid="uid://buw0vxxhhtx3w" path="res://scene/ability/fireball_ability.tscn" id="9_pdsyd"]
+[ext_resource type="PackedScene" uid="uid://buw0vxxhhtx3w" path="res://scenes/ability/fireball_ability.tscn" id="9_pdsyd"]
 [ext_resource type="Script" uid="uid://dxrpi2hjaj7tl" path="res://scripts/entity/pathfinding.gd" id="10_hrbwj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2di4e"]

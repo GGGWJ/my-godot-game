@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://bo8thpjb4j0qe" path="res://assets/Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_With_VFX/Skeleton_01_White_Attack1.png" id="3_d7bxq"]
 [ext_resource type="Texture2D" uid="uid://bv5x68bsyone1" path="res://assets/Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_With_VFX/Skeleton_01_White_Die.png" id="3_lm2m6"]
 [ext_resource type="Script" uid="uid://dml80icbdg7ls" path="res://scripts/ability/core/ability_controller.gd" id="5_d7bxq"]
-[ext_resource type="PackedScene" uid="uid://b4telgflk2jko" path="res://scene/ability/skeleton_stash.tscn" id="6_lm2m6"]
-[ext_resource type="PackedScene" uid="uid://df7mjlhl8x386" path="res://scene/hit_particles.tscn" id="7_jafab"]
+[ext_resource type="PackedScene" uid="uid://b4telgflk2jko" path="res://scenes/ability/skeleton_stash.tscn" id="6_lm2m6"]
+[ext_resource type="PackedScene" uid="uid://df7mjlhl8x386" path="res://scenes/hit_particles.tscn" id="7_jafab"]
 [ext_resource type="Script" uid="uid://dxrpi2hjaj7tl" path="res://scripts/entity/pathfinding.gd" id="10_tgcwm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2di4e"]
