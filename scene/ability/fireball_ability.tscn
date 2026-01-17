@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://buw0vxxhhtx3w"]
+[gd_scene load_steps=12 format=3 uid="uid://buw0vxxhhtx3w"]
 
 [ext_resource type="Script" uid="uid://mju3ujqfhuf8" path="res://scripts/ability/core/ability.gd" id="1_16r88"]
+[ext_resource type="Texture2D" uid="uid://djyv7qi36t2xd" path="res://assets/icon/Free - Raven Fantasy Icons/Separated Files/64x64/fc732.png" id="2_k7jhl"]
 [ext_resource type="Script" uid="uid://ci7f4rcjapq7t" path="res://scripts/ability/component/ability_spawn_manifest.gd" id="2_l8w1q"]
 [ext_resource type="Script" uid="uid://6d10xic78swb" path="res://scripts/ability/component/ability_target_player.gd" id="2_nl5o0"]
 [ext_resource type="Script" uid="uid://conblm46oyvdc" path="res://scripts/ability/component/ability_animation_runner.gd" id="2_tqbi7"]
@@ -20,6 +21,7 @@ metadata/_custom_type_script = "uid://clo7b3t1pq370"
 
 [node name="FireballAbility" type="Node"]
 script = ExtResource("1_16r88")
+icon_texture = ExtResource("2_k7jhl")
 
 [node name="AbilityAnimationRunner" type="Node" parent="."]
 script = ExtResource("2_tqbi7")

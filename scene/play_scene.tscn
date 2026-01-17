@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://b0itg3kq1ytwa"]
+[gd_scene load_steps=27 format=4 uid="uid://b0itg3kq1ytwa"]
 
 [ext_resource type="Script" uid="uid://j0hdd2opi1f8" path="res://scripts/utils/follow_camera.gd" id="1_6ypx3"]
 [ext_resource type="PackedScene" uid="uid://658v4co7jd07" path="res://scene/player.tscn" id="1_oxvvw"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://bqkv13q5ao5s6" path="res://assets/Cute_Fantasy_Free/Outdoor decoration/Outdoor_Decor_Free.png" id="5_st5yg"]
 [ext_resource type="Texture2D" uid="uid://diy5ecfns7yym" path="res://assets/Cute_Fantasy_Free/Outdoor decoration/Bridge_Wood.png" id="8_lft4v"]
 [ext_resource type="Texture2D" uid="uid://tda5kdl7pqbp" path="res://assets/Cute_Fantasy_Free/Outdoor decoration/Oak_Tree_Small.png" id="9_4ukpk"]
+[ext_resource type="Script" uid="uid://ct1xg3ebyhh8c" path="res://scripts/utils/spell_bar.gd" id="11_22d1p"]
+[ext_resource type="PackedScene" uid="uid://df8ks0sgvfok0" path="res://scene/ui/spell_button.tscn" id="11_y6jde"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_y6jde"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -244,6 +246,22 @@ sources/0 = SubResource("TileSetAtlasSource_os6ff")
 sources/1 = SubResource("TileSetAtlasSource_22d1p")
 sources/2 = SubResource("TileSetAtlasSource_2oann")
 
+[sub_resource type="InputEventKey" id="InputEventKey_22d1p"]
+device = -1
+keycode = 49
+unicode = 49
+
+[sub_resource type="Shortcut" id="Shortcut_22d1p"]
+events = [SubResource("InputEventKey_22d1p")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_2oann"]
+device = -1
+keycode = 50
+unicode = 50
+
+[sub_resource type="Shortcut" id="Shortcut_2oann"]
+events = [SubResource("InputEventKey_2oann")]
+
 [node name="PlayScene" type="Node2D" node_paths=PackedStringArray("screen_transition")]
 script = ExtResource("1_xhmxe")
 screen_transition = NodePath("CanvasLayer/ColorRect")
@@ -253,9 +271,10 @@ zoom = Vector2(5, 5)
 script = ExtResource("1_6ypx3")
 follow_target = NodePath("../player")
 
-[node name="player" parent="." instance=ExtResource("1_oxvvw")]
+[node name="player" parent="." node_paths=PackedStringArray("spell_bar") instance=ExtResource("1_oxvvw")]
 z_index = 100
 position = Vector2(8, 48)
+spell_bar = NodePath("../CanvasLayer/Control/SpellBar")
 
 [node name="Skeleton" parent="." instance=ExtResource("3_6lhxs")]
 position = Vector2(-152, 31.999996)
@@ -330,3 +349,50 @@ offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SpellBar" type="PanelContainer" parent="CanvasLayer/Control" node_paths=PackedStringArray("button_container")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 685.0
+offset_top = 880.0
+offset_right = 1235.0
+offset_bottom = 1028.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(275, 130)
+script = ExtResource("11_22d1p")
+button_container = NodePath("MarginContainer/HBoxContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/SpellBar"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/SpellBar/MarginContainer"]
+layout_mode = 2
+
+[node name="SpellButton" parent="CanvasLayer/Control/SpellBar/MarginContainer/HBoxContainer" instance=ExtResource("11_y6jde")]
+layout_mode = 2
+shortcut = SubResource("Shortcut_22d1p")
+
+[node name="SpellButton2" parent="CanvasLayer/Control/SpellBar/MarginContainer/HBoxContainer" instance=ExtResource("11_y6jde")]
+layout_mode = 2
+shortcut = SubResource("Shortcut_2oann")
+
+[node name="SpellButton3" parent="CanvasLayer/Control/SpellBar/MarginContainer/HBoxContainer" instance=ExtResource("11_y6jde")]
+layout_mode = 2
+
+[node name="SpellButton4" parent="CanvasLayer/Control/SpellBar/MarginContainer/HBoxContainer" instance=ExtResource("11_y6jde")]
+layout_mode = 2

@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://cdqlge8i51rl8"]
+[gd_scene load_steps=20 format=3 uid="uid://cdqlge8i51rl8"]
 
 [ext_resource type="Script" uid="uid://mju3ujqfhuf8" path="res://scripts/ability/core/ability.gd" id="1_se5wr"]
 [ext_resource type="Script" uid="uid://ci7f4rcjapq7t" path="res://scripts/ability/component/ability_spawn_manifest.gd" id="2_e41qq"]
+[ext_resource type="Texture2D" uid="uid://cicasvc46olih" path="res://assets/icon/Free - Raven Fantasy Icons/Separated Files/64x64/fc728.png" id="2_tj2ge"]
 [ext_resource type="PackedScene" uid="uid://b1ukbthaa71ng" path="res://scene/ability/slash_ability_manifest.tscn" id="3_7vueh"]
 [ext_resource type="Script" uid="uid://bcw8tr5210k33" path="res://scripts/ability/component/ability_push_back.gd" id="4_1oiae"]
 [ext_resource type="Script" uid="uid://vgoe2ulg7p2l" path="res://scripts/ability/component/ability_turn_to_mouse.gd" id="5_wm4fp"]
@@ -31,6 +32,7 @@ metadata/_custom_type_script = "uid://clo7b3t1pq370"
 
 [node name="SlashAbility" type="Node"]
 script = ExtResource("1_se5wr")
+icon_texture = ExtResource("2_tj2ge")
 cooldown = 0.5
 
 [node name="SpawnManifest" type="Node" parent="."]

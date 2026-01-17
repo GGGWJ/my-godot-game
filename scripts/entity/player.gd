@@ -7,6 +7,7 @@ extends Entity
 @onready var footstep_effect: FootstepEffect = $FootstepEffect
 @export var footstep_clip:AudioConfig
 @export var footstep_interval = 0.3
+@export var spell_bar:SpellBar
 
 var is_moving:bool = false
 var weapon_right:Vector2
@@ -28,6 +29,13 @@ func _ready() -> void:
 	weapon_left = -weapon.position
 	spawn_location = position
 
+	var abilities = ability_controller.abilities
+	
+	for ability_idx in range(abilities.size()):
+		var ability = abilities[ability_idx]
+		spell_bar.register_ability(ability, ability_idx)
+
+	EventBus.play_cast_ability.connect(_handle_ability)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -35,21 +43,14 @@ func _process(delta: float) -> void:
 
 	#移动函数
 	_handle_movement(delta)
-	#技能函数
-	_handle_abilities()
 	#移动动画函数
 	_handle_animation()
 	# 脚步音效
 	_handle_footstep_sound(delta)
 
 
-func _handle_abilities():
-	if Input.is_action_just_pressed("ability_1"):
-		ability_controller.trigger_ability_by_idx(0)
-	elif Input.is_action_just_pressed("ability_2"):
-		ability_controller.trigger_ability_by_idx(1)
-	elif Input.is_action_just_pressed("ability_3"):
-		ability_controller.trigger_ability_by_idx(2)
+func _handle_ability(ability:Ability):
+	ability_controller.trigger_ability(ability)
 
 func _handle_movement(delta: float):
 	is_moving = false

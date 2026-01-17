@@ -19,6 +19,7 @@ func _process(delta: float) -> void:
 	for ability in cooldowns.keys():
 		if cooldowns[ability] > 0.0:
 			cooldowns[ability] = max(cooldowns[ability] - delta, 0.0)
+			ability.current_cooldown = cooldowns[ability]
  
 
 func trigger_ability_by_idx(idx: int):
@@ -27,9 +28,9 @@ func trigger_ability_by_idx(idx: int):
 		return
 
 	var ability = abilities.get(idx)
-	_trigger_ability(ability)
+	trigger_ability(ability)
 
-func _trigger_ability(ability: Ability):
+func trigger_ability(ability: Ability):
 	if ability == null:
 		print("Ability is null!")
 		return
