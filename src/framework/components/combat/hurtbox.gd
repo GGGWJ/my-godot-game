@@ -25,6 +25,15 @@ func _ready() -> void:
 
 ## 处理被命中的核心逻辑
 func handle_hit(damage_data: DamageData) -> void:
+	# 尝试延迟获取 health_component，防止初始化顺序导致为空
+	if not health_component and entity:
+		health_component = entity.health_component
+
+	print("[Hurtbox 调试] 目标=", entity.name if entity else "空", 
+		" 来源=", damage_data.source_node.name if damage_data.source_node else "空",
+		" 伤害=", damage_data.amount,
+		" 生命与组件=", health_component)
+
 	if is_invincible:
 		return
 	
@@ -34,6 +43,8 @@ func handle_hit(damage_data: DamageData) -> void:
 	# 1. 扣除血量
 	if health_component:
 		health_component.apply_damage(damage_data.amount)
+	else:
+		print("[Hurtbox 错误] 在实体上未找到生命组件: ", entity.name if entity else "未知")
 	
 	# 2. 处理物理反馈（如击退）
 	if entity and damage_data.knockback_force > 0:

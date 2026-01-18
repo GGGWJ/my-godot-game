@@ -77,7 +77,9 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func apply_damage(damage: float) -> void:
+	# print("[Entity 调试] apply_damage 被调用，目标: ", self.name, " 数值: ", damage)
 	if is_dead or not health_component: 
+		print("[Entity 调试] apply_damage 中止. 是否死亡: ", is_dead, " 是否有生命组件: ", health_component != null)
 		return
 
 	health_component.apply_damage(damage)

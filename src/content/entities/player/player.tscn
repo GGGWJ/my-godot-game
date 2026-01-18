@@ -273,7 +273,8 @@ _limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 1.5170277), 0.0, 0.0, 0, 0, Vector2(1, 0.49071193), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[node name="player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 1
 script = ExtResource("1_7omxl")
 footstep_clip = SubResource("Resource_j4wxg")
 stats = ExtResource("14_stats_res")
@@ -317,11 +318,6 @@ script = ExtResource("3_u4c7w")
 
 [node name="DashAbility" parent="AbilityController" instance=ExtResource("11_34jf3")]
 cooldown = 0.2
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="HurtboxCollision" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CapsuleShape2D_hp4bs")
 
 [node name="Visual" type="Node2D" parent="."]
 script = ExtResource("2_visual")

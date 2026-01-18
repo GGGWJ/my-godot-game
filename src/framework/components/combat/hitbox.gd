@@ -24,6 +24,8 @@ func _on_area_entered(area: Area2D) -> void:
 	if area is Hurtbox:
 		var hurtbox = area as Hurtbox
 		
+		# print("[Hitbox 调试] 击中受击盒，归属: ", hurtbox.entity.name if hurtbox.entity else "未知", " | 对方阵营: ", hurtbox.team, " vs 我方阵营: ", self.team)
+
 		# 1. 简单的阵营检查
 		if hurtbox.team == self.team:
 			return

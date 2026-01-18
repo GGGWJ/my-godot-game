@@ -1,9 +1,9 @@
-[gd_scene load_steps=58 format=3 uid="uid://cgq8wr81n0i2q"]
+[gd_scene load_steps=65 format=3 uid="uid://cgq8wr81n0i2q"]
 
 [ext_resource type="Shader" uid="uid://d36k77idc43f0" path="res://src/framework/shaders/entity.gdshader" id="1_2di4e"]
 [ext_resource type="Texture2D" uid="uid://cr21gh0cau33g" path="res://assets/textures/Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_Without_VFX/Skeleton_01_White_Idle.png" id="1_cyrxt"]
 [ext_resource type="Script" uid="uid://ddne0qg3wc4sl" path="res://src/framework/entities/enemy.gd" id="1_mb7nf"]
-[ext_resource type="Script" path="res://src/framework/entities/enemy_visual.gd" id="2_visual"]
+[ext_resource type="Script" uid="uid://cd882m6873c6j" path="res://src/framework/entities/enemy_visual.gd" id="2_visual"]
 [ext_resource type="Texture2D" uid="uid://b6rmcn8yqaire" path="res://assets/textures/Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_With_VFX/Skeleton_01_White_Walk.png" id="3_3drt6"]
 [ext_resource type="Texture2D" uid="uid://bo8thpjb4j0qe" path="res://assets/textures/Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_With_VFX/Skeleton_01_White_Attack1.png" id="3_d7bxq"]
 [ext_resource type="Texture2D" uid="uid://bv5x68bsyone1" path="res://assets/textures/Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_With_VFX/Skeleton_01_White_Die.png" id="3_lm2m6"]
@@ -11,23 +11,14 @@
 [ext_resource type="PackedScene" uid="uid://b4telgflk2jko" path="res://src/content/abilities/instances/enemy/skeleton_stash.tscn" id="6_lm2m6"]
 [ext_resource type="PackedScene" uid="uid://df7mjlhl8x386" path="res://src/content/vfx/hit_particles.tscn" id="7_jafab"]
 [ext_resource type="Script" uid="uid://dxrpi2hjaj7tl" path="res://src/framework/components/pathfinding.gd" id="10_tgcwm"]
-[ext_resource type="Script" uid="uid://biw5jtfjtac2i" path="res://src/framework/stats/enemy_stats.gd" id="11_stats"]
 [ext_resource type="Resource" path="res://resources/stats/enemies/skeleton_basic.tres" id="12_stats_res"]
-
-[ext_resource type="Script" path="res://src/framework/components/health_component.gd" id="13_health"]
-[ext_resource type="Script" path="res://src/framework/components/mover_component.gd" id="14_mover"]
-[ext_resource type="Script" path="res://src/framework/components/state_machine/fsm.gd" id="15_fsm"]
-[ext_resource type="Script" path="res://src/content/entities/enemies/states/enemy_idle.gd" id="16_idle"]
-[ext_resource type="Script" path="res://src/content/entities/enemies/states/enemy_chase.gd" id="17_chase"]
-[ext_resource type="Script" path="res://src/content/entities/enemies/states/enemy_attack.gd" id="18_attack"]
-
-[ext_resource type="Script" path="res://src/framework/components/combat/hurtbox.gd" id="19_hurtbox"]
-
-[sub_resource type="Resource" id="SubResource_skeleton_stats"]
-script = ExtResource("11_stats")
-stop_distance = 20.0
-speed = 30.0
-damage_text_color = Color(1, 1, 1, 1)
+[ext_resource type="Script" uid="uid://qwhp10hubtcj" path="res://src/framework/components/health_component.gd" id="13_health"]
+[ext_resource type="Script" uid="uid://cppidkpmix460" path="res://src/framework/components/mover_component.gd" id="14_mover"]
+[ext_resource type="Script" uid="uid://cv55q2fa1c8lp" path="res://src/framework/components/state_machine/fsm.gd" id="15_fsm"]
+[ext_resource type="Script" uid="uid://n22jgfmwuljr" path="res://src/content/entities/enemies/states/enemy_idle.gd" id="16_idle"]
+[ext_resource type="Script" uid="uid://c1x5b6vuj5is6" path="res://src/content/entities/enemies/states/enemy_chase.gd" id="17_chase"]
+[ext_resource type="Script" uid="uid://cbmhwhwkerknm" path="res://src/content/entities/enemies/states/enemy_attack.gd" id="18_attack"]
+[ext_resource type="Script" uid="uid://bgq0ja7443jo" path="res://src/framework/components/combat/hurtbox.gd" id="19_hurtbox"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d7bxq"]
 height = 49.999992
