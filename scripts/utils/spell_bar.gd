@@ -3,6 +3,8 @@ extends PanelContainer
 @export var ability_button_scene: PackedScene = preload("res://scenes/ui/spell_button.tscn")
 @onready var container: HBoxContainer = $MarginContainer/HBoxContainer
 
+var _last_player: Player = null
+
 func _ready() -> void:
 	EventBus.player_ready.connect(_on_player_ready)
 	
@@ -12,6 +14,10 @@ func _ready() -> void:
 		_on_player_ready(player)
 
 func _on_player_ready(player: Player) -> void:
+	if _last_player == player:
+		return
+	_last_player = player
+	
 	# 清理旧按钮（仅清理容器内的按钮）
 	for child in container.get_children():
 		child.queue_free()
