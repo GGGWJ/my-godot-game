@@ -65,6 +65,10 @@ ability_3={
 ]
 }
 
+[navigation]
+
+2d/default_cell_size=4.0
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

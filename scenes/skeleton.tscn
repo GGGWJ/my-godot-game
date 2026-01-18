@@ -10,7 +10,16 @@
 [ext_resource type="PackedScene" uid="uid://b4telgflk2jko" path="res://scenes/ability/skeleton_stash.tscn" id="6_lm2m6"]
 [ext_resource type="PackedScene" uid="uid://df7mjlhl8x386" path="res://scenes/hit_particles.tscn" id="7_jafab"]
 [ext_resource type="Script" uid="uid://dxrpi2hjaj7tl" path="res://scripts/entity/pathfinding.gd" id="10_tgcwm"]
-[ext_resource type="Script" path="res://scripts/resources/enemy_stats.gd" id="11_stats"]
+[ext_resource type="Script" uid="uid://biw5jtfjtac2i" path="res://scripts/resources/enemy_stats.gd" id="11_stats"]
+
+[sub_resource type="Resource" id="SubResource_skeleton_stats"]
+script = ExtResource("11_stats")
+stop_distance = 20.0
+speed = 30.0
+damage_text_color = Color(1, 1, 1, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d7bxq"]
+height = 49.999992
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2di4e"]
 shader = ExtResource("1_2di4e")
@@ -330,15 +339,6 @@ animations = [{
 [sub_resource type="Gradient" id="Gradient_jafab"]
 offsets = PackedFloat32Array(0, 0.015086207, 0.4073276, 0.7413793, 1)
 colors = PackedColorArray(0.3553136, 0.35531354, 0.35531357, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.8235294, 0.8235294, 0.8235294, 0.6431373)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d7bxq"]
-
-[sub_resource type="Resource" id="SubResource_skeleton_stats"]
-script = ExtResource("11_stats")
-max_health = 300.0
-speed = 30.0
-damage_text_color = Color(1, 1, 1, 1)
-stop_distance = 20.0
 
 [node name="Skeleton" type="CharacterBody2D"]
 z_index = 100

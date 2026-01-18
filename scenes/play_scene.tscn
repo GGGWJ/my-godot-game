@@ -291,36 +291,27 @@ zoom = Vector2(5, 5)
 script = ExtResource("1_6ypx3")
 follow_target = NodePath("../player")
 
-[node name="player" parent="." node_paths=PackedStringArray("spell_bar", "health_bar") instance=ExtResource("1_oxvvw")]
+[node name="player" parent="." instance=ExtResource("1_oxvvw")]
 z_index = 100
 position = Vector2(8, 46)
-spell_bar = NodePath("../CanvasLayer/Control/SpellBar")
-health_bar = NodePath("../CanvasLayer/Control/PlayerHealthBar")
-max_health = 500.0
 
 [node name="Skeleton" parent="." instance=ExtResource("3_6lhxs")]
 position = Vector2(-152, 31.999996)
-max_health = 30.0
 
 [node name="Skeleton3" parent="." instance=ExtResource("3_6lhxs")]
 position = Vector2(199.99998, 31.999996)
-max_health = 30.0
 
 [node name="Skeleton2" parent="." instance=ExtResource("3_6lhxs")]
 position = Vector2(18.999985, -89.99999)
-max_health = 30.0
 
 [node name="Skeleton4" parent="." instance=ExtResource("3_6lhxs")]
 position = Vector2(-40.000008, -7.999996)
-max_health = 30.0
 
 [node name="Skeleton5" parent="." instance=ExtResource("3_6lhxs")]
 position = Vector2(72.00001, -7.999996)
-max_health = 30.0
 
 [node name="Skeleton6" parent="." instance=ExtResource("3_6lhxs")]
 position = Vector2(-47.999992, 71.99999)
-max_health = 30.0
 
 [node name="Demon" parent="." instance=ExtResource("5_4ukpk")]
 position = Vector2(136, 88)
@@ -378,7 +369,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="SpellBar" type="PanelContainer" parent="CanvasLayer/Control" node_paths=PackedStringArray("button_container")]
+[node name="SpellBar" type="PanelContainer" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -393,7 +384,6 @@ grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(275, 130)
 script = ExtResource("11_22d1p")
-button_container = NodePath("MarginContainer/HBoxContainer")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/SpellBar"]
 layout_mode = 2

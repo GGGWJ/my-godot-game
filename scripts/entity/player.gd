@@ -5,8 +5,6 @@ extends Entity
 @onready var ability_controller: AbilityController = $AbilityController
 @onready var footstep_effect: FootstepEffect = $FootstepEffect
 @export var footstep_clip: AudioConfig
-@export var spell_bar: SpellBar
-@export var health_bar: PlayerHealthBar
 
 var player_stats: PlayerStats:
 	get: return stats as PlayerStats
@@ -27,18 +25,13 @@ func _ready() -> void:
 	weapon_left = Vector2(-weapon.position.x, weapon.position.y)
 	spawn_location = position
 
-	var abilities = ability_controller.abilities
-	
-	for ability_idx in range(abilities.size()):
-		var ability = abilities[ability_idx]
-		spell_bar.register_ability(ability, ability_idx)
-
 	EventBus.play_cast_ability.connect(_handle_ability)
-
-	health_bar.set_health(current_health, stats.max_health)
-
-	# 连接玩家生命值变化信号到血条更新函数
-	health_changed.connect(health_bar.set_health)
+	
+	# 连接生命值变化到全局信号
+	health_changed.connect(func(curr, m): EventBus.player_health_changed.emit(curr, m))
+	
+	# 通知 UI 玩家已就绪
+	EventBus.player_ready.emit(self)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
