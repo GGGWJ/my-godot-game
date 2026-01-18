@@ -1,6 +1,6 @@
 extends Node
 
-@onready var damage_font = preload("res://resources/damage_font.tres")
+@onready var damage_font = preload("res://assets/fonts/damage_font.tres")
 
 func show_damage_text(damage: String,spawn_pos:Vector2,color:Color) -> void:
 	var label = Label.new()

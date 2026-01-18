@@ -1,13 +1,13 @@
 [gd_scene load_steps=17 format=3 uid="uid://b7knm8qlixf5v"]
 
 [ext_resource type="Script" uid="uid://dh57qs5mx5qwc" path="res://scripts/ability/manifest/projectile_manifest.gd" id="1_1pj3r"]
-[ext_resource type="Texture2D" uid="uid://vccmocgsgbvt" path="res://assets/FB00_nyknck/FB001.png" id="2_1pj3r"]
-[ext_resource type="AudioStream" uid="uid://csh8nalujru7h" path="res://assets/Sound/DSGNImpt_EXPLOSION-Fire Hit_HY_PC-001.wav" id="2_hg1ah"]
-[ext_resource type="Script" uid="uid://clo7b3t1pq370" path="res://scripts/resources/audio_config.gd" id="3_ggx20"]
-[ext_resource type="Texture2D" uid="uid://dihpaljis4yma" path="res://assets/FB00_nyknck/FB002.png" id="3_uv28u"]
-[ext_resource type="Texture2D" uid="uid://cs5yfgkankiuq" path="res://assets/FB00_nyknck/FB003.png" id="4_hg1ah"]
-[ext_resource type="Texture2D" uid="uid://dnlvdhaifc6bx" path="res://assets/FB00_nyknck/FB004.png" id="5_ggx20"]
-[ext_resource type="Texture2D" uid="uid://dcb8l320smc0h" path="res://assets/FB00_nyknck/FB005.png" id="6_oc3ko"]
+[ext_resource type="Texture2D" uid="uid://vccmocgsgbvt" path="res://assets/textures/FB00_nyknck/FB001.png" id="2_1pj3r"]
+[ext_resource type="AudioStream" uid="uid://csh8nalujru7h" path="res://assets/audio/DSGNImpt_EXPLOSION-Fire Hit_HY_PC-001.wav" id="2_hg1ah"]
+[ext_resource type="Script" uid="uid://clo7b3t1pq370" path="res://resources/stats/audio_config.gd" id="3_ggx20"]
+[ext_resource type="Texture2D" uid="uid://dihpaljis4yma" path="res://assets/textures/FB00_nyknck/FB002.png" id="3_uv28u"]
+[ext_resource type="Texture2D" uid="uid://cs5yfgkankiuq" path="res://assets/textures/FB00_nyknck/FB003.png" id="4_hg1ah"]
+[ext_resource type="Texture2D" uid="uid://dnlvdhaifc6bx" path="res://assets/textures/FB00_nyknck/FB004.png" id="5_ggx20"]
+[ext_resource type="Texture2D" uid="uid://dcb8l320smc0h" path="res://assets/textures/FB00_nyknck/FB005.png" id="6_oc3ko"]
 
 [sub_resource type="Resource" id="Resource_oc3ko"]
 script = ExtResource("3_ggx20")

@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://b1ukbthaa71ng"]
 
 [ext_resource type="Script" uid="uid://bf7ji112xle3j" path="res://scripts/ability/manifest/slash_manifest.gd" id="1_kljft"]
-[ext_resource type="Texture2D" uid="uid://ceq30wtt12414" path="res://assets/Pixel Art Animations - Warrior (FREE)/VFX 4/sprite-sheet.png" id="1_qyx4o"]
-[ext_resource type="Texture2D" uid="uid://btss54gq656ud" path="res://assets/SlashEffect/NPT100.png" id="2_oe4e3"]
-[ext_resource type="Texture2D" uid="uid://bjw47731yy2gx" path="res://assets/SlashEffect/NPT101.png" id="3_lnphn"]
-[ext_resource type="Texture2D" uid="uid://cfggrvs3o8w4u" path="res://assets/SlashEffect/NPT102.png" id="4_tkgv5"]
-[ext_resource type="Texture2D" uid="uid://d0feud232wwvu" path="res://assets/SlashEffect/NPT103.png" id="5_cynk2"]
+[ext_resource type="Texture2D" uid="uid://ceq30wtt12414" path="res://assets/textures/Pixel Art Animations - Warrior (FREE)/VFX 4/sprite-sheet.png" id="1_qyx4o"]
+[ext_resource type="Texture2D" uid="uid://btss54gq656ud" path="res://assets/textures/SlashEffect/NPT100.png" id="2_oe4e3"]
+[ext_resource type="Texture2D" uid="uid://bjw47731yy2gx" path="res://assets/textures/SlashEffect/NPT101.png" id="3_lnphn"]
+[ext_resource type="Texture2D" uid="uid://cfggrvs3o8w4u" path="res://assets/textures/SlashEffect/NPT102.png" id="4_tkgv5"]
+[ext_resource type="Texture2D" uid="uid://d0feud232wwvu" path="res://assets/textures/SlashEffect/NPT103.png" id="5_cynk2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4xcvh"]
 atlas = ExtResource("1_qyx4o")

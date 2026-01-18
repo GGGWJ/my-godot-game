@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cjd3rf4cwyok1"]
 
 [ext_resource type="Script" uid="uid://mju3ujqfhuf8" path="res://scripts/ability/core/ability.gd" id="1_dmgyh"]
-[ext_resource type="Texture2D" uid="uid://djyv7qi36t2xd" path="res://assets/icon/Free - Raven Fantasy Icons/Separated Files/64x64/fc732.png" id="2_353ni"]
+[ext_resource type="Texture2D" uid="uid://djyv7qi36t2xd" path="res://assets/textures/icon/Free - Raven Fantasy Icons/Separated Files/64x64/fc732.png" id="2_353ni"]
 [ext_resource type="Script" uid="uid://conblm46oyvdc" path="res://scripts/ability/component/ability_animation_runner.gd" id="2_xdcrg"]
 [ext_resource type="Script" uid="uid://d2hub3oknd0sn" path="res://scripts/ability/component/ability_component_group.gd" id="3_f6ugl"]
 [ext_resource type="Script" uid="uid://fmcldq7g6ogg" path="res://scripts/ability/component/ability_target_cursor.gd" id="4_uncve"]
