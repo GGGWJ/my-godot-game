@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4telgflk2jko"]
+
+[ext_resource type="Script" uid="uid://mju3ujqfhuf8" path="res://src/framework/abilities/base/ability.gd" id="1_1w75i"]
+[ext_resource type="Script" uid="uid://conblm46oyvdc" path="res://src/framework/abilities/components/ability_animation_runner.gd" id="2_or6sr"]
+[ext_resource type="Script" uid="uid://1f1iy64navpu" path="res://src/framework/abilities/components/ability_deal_damage.gd" id="3_n23n6"]
+[ext_resource type="Script" uid="uid://6d10xic78swb" path="res://src/framework/abilities/components/ability_target_player.gd" id="4_s5q2f"]
+
+[node name="SkeletonStash" type="Node2D"]
+script = ExtResource("1_1w75i")
+
+[node name="AbilityAnimationRunner" type="Node" parent="."]
+script = ExtResource("2_or6sr")
+animation_name = "slash"
+metadata/_custom_type_script = "uid://conblm46oyvdc"
+
+[node name="AbilityTargetPlayer" type="Node" parent="."]
+script = ExtResource("4_s5q2f")
+metadata/_custom_type_script = "uid://6d10xic78swb"
+
+[node name="AbilityDealDamage" type="Node" parent="."]
+script = ExtResource("3_n23n6")
+exec_delay = 0.5
+metadata/_custom_type_script = "uid://1f1iy64navpu"

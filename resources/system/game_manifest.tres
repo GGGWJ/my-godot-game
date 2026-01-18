@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="GameManifest" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://src/core/resources/game_manifest.gd" id="1_manifest"]
+[ext_resource type="PackedScene" path="res://src/content/scenes/play_scene/play_scene.tscn" id="2_play"]
+[ext_resource type="PackedScene" path="res://src/content/scenes/home_scene/home_scene.tscn" id="3_home"]
+[ext_resource type="PackedScene" path="res://src/ui/hud/spell_button/spell_button.tscn" id="4_btn"]
+[ext_resource type="Font" path="res://assets/fonts/damage_font.tres" id="5_font"]
+
+[resource]
+script = ExtResource("1_manifest")
+play_scene = ExtResource("2_play")
+home_scene = ExtResource("3_home")
+ability_button = ExtResource("4_btn")
+damage_font = ExtResource("5_font")

@@ -4,8 +4,8 @@ extends Node
 
 var _play_scene: PlayScene = null
 
-const MANIFEST_PATH = "res://resources/game_manifest.tres"
-var manifest: Resource
+const MANIFEST_PATH = "res://resources/system/game_manifest.tres"
+var manifest: GameManifest
 
 func _ready() -> void:
 	if FileAccess.file_exists(MANIFEST_PATH):
