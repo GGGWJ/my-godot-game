@@ -16,7 +16,7 @@ func check_colliders_around_position(caster:Entity, p_radius: float) -> Array[En
 	# PhysicsShapeQueryParameters2D,物理检测的 “规则配置”，比如检测什么形状、检测中心在哪、是否检测 Area2D 等
 	var query = PhysicsShapeQueryParameters2D.new()
 	query.shape = shape
-	query.transform.origin = caster.position
+	query.transform.origin = caster.global_position
 	query.collide_with_areas = true
 
 	# var line = create_debug_circle(radius)
@@ -31,8 +31,10 @@ func check_colliders_around_position(caster:Entity, p_radius: float) -> Array[En
 			var collider = result.collider
 			var parent = collider.get_parent()
 
-			# 核心修复：添加 parent != caster 判断，防止技能伤害到施法者自己
-			if parent is Entity and parent != caster:
+			# 核心修复：
+			# 1. 添加 parent != caster 判断，防止技能伤害到施法者自己
+			# 2. 添加 deduplication，防止同一个实体有多个碰撞标由于会被重复添加
+			if parent is Entity and parent != caster and not targets.has(parent):
 				targets.push_back(parent)
 
 	# call_deferred("destroy_line", line, 0.2)

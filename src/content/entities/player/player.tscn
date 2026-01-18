@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://1mot2lsduok2" path="res://assets/textures/player/AnimationSheet_Character.png" id="1_7j80i"]
 [ext_resource type="Script" uid="uid://becf2c5pbtjn7" path="res://src/content/entities/player/player.gd" id="1_7omxl"]
+[ext_resource type="Script" path="res://src/content/entities/player/player_visual.gd" id="2_visual"]
 [ext_resource type="Shader" uid="uid://d36k77idc43f0" path="res://src/framework/shaders/entity.gdshader" id="2_hp4bs"]
 [ext_resource type="AudioStream" uid="uid://ctcx2lqo7vnxy" path="res://assets/audio/Super Dialogue Audio Pack v1/Step 2 - Audio Files/2 - Confirmation/Female/Karen Cenon/confirmation_1_karen.wav" id="2_ihjo1"]
 [ext_resource type="AudioStream" uid="uid://fxwcrkns7ryr" path="res://assets/audio/Super Dialogue Audio Pack v1/Step 2 - Audio Files/2 - Confirmation/Female/Karen Cenon/confirmation_2_karen.wav" id="3_dk1vr"]
@@ -263,23 +264,14 @@ _limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 1.5170277), 0.0, 0.0, 0, 0, Vector2(1, 0.49071193), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("weapon")]
+[node name="player" type="CharacterBody2D"]
 script = ExtResource("1_7omxl")
-weapon = NodePath("Weapon")
 footstep_clip = SubResource("Resource_j4wxg")
 stats = SubResource("SubResource_player_stats")
 
 [node name="PhysicsCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_player")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-material = SubResource("ShaderMaterial_g2vtq")
-sprite_frames = SubResource("SpriteFrames_hsluc")
-animation = &"run"
-autoplay = "idle"
-frame_progress = 0.45839232
 
 [node name="AbilityController" type="Node" parent="."]
 script = ExtResource("3_u4c7w")
@@ -291,27 +283,34 @@ script = ExtResource("3_u4c7w")
 [node name="DashAbility" parent="AbilityController" instance=ExtResource("11_34jf3")]
 cooldown = 0.2
 
-[node name="Weapon" type="Sprite2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="HurtboxCollision" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_hp4bs")
+
+[node name="Visual" type="Node2D" parent="."]
+script = ExtResource("2_visual")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visual"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_g2vtq")
+sprite_frames = SubResource("SpriteFrames_hsluc")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Weapon" type="Sprite2D" parent="Visual"]
 texture_filter = 1
 position = Vector2(8.549998, 0.45000172)
 rotation = 0.7853982
 scale = Vector2(0.7603429, 0.52464014)
 texture = ExtResource("6_oh5ij")
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="HurtboxCollision" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CapsuleShape2D_hp4bs")
-
-[node name="AudioListener2D" type="AudioListener2D" parent="."]
-current = true
-
-[node name="FootstepEffect" type="Node2D" parent="."]
+[node name="FootstepEffect" type="Node2D" parent="Visual"]
 position = Vector2(1, 16)
 scale = Vector2(0.2, 0.2)
 script = ExtResource("12_dk1vr")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="FootstepEffect"]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Visual/FootstepEffect"]
 position = Vector2(6.6666656, -1.4305115e-06)
 emitting = false
 amount = 10
@@ -329,7 +328,7 @@ initial_velocity_min = 80.0
 initial_velocity_max = 120.0
 scale_amount_curve = SubResource("Curve_ihjo1")
 
-[node name="CPUParticles2D2" type="CPUParticles2D" parent="FootstepEffect"]
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="Visual/FootstepEffect"]
 position = Vector2(-13.333333, -1.4305115e-06)
 emitting = false
 amount = 10
@@ -347,4 +346,7 @@ initial_velocity_min = 80.0
 initial_velocity_max = 120.0
 scale_amount_curve = SubResource("Curve_ihjo1")
 
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[node name="AudioListener2D" type="AudioListener2D" parent="Visual"]
+current = true
+
+[connection signal="animation_finished" from="Visual/AnimatedSprite2D" to="Visual" method="_on_animated_sprite_2d_animation_finished"]

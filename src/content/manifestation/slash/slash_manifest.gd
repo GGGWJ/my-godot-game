@@ -8,6 +8,7 @@ static var alternate_slash: bool = true
 @export var rotation_offset: float = 0.0
 
 var cloned_weapon: Node2D
+var _original_weapon: Node2D
 
 
 func _activate(context: AbilityContext):
@@ -18,12 +19,12 @@ func _activate(context: AbilityContext):
 	alternate_slash = not alternate_slash
 	animated_sprite.flip_v = alternate_slash
 
-	var weapon = context.caster.get_node("Weapon") as Node2D
+	_original_weapon = context.caster.find_child("Weapon", true, false) as Node2D
 
 	# 给武器添加一个偏移量
-	if weapon != null:
-		weapon.hide()
-		var base_angle = (mouse_pos - weapon.global_position).angle()
+	if _original_weapon != null:
+		_original_weapon.hide()
+		var base_angle = (mouse_pos - _original_weapon.global_position).angle()
 		var offset_rad = deg_to_rad(rotation_offset)
 
 		# 交替挥砍武器方向
@@ -33,7 +34,7 @@ func _activate(context: AbilityContext):
 		var weapon_angle = base_angle + offset_rad
 		var weapon_direction = Vector2(cos(weapon_angle), sin(weapon_angle))
 
-		cloned_weapon = weapon.duplicate() as Node2D
+		cloned_weapon = _original_weapon.duplicate() as Node2D
 		cloned_weapon.show()
 		context.caster.add_child(cloned_weapon)
 
@@ -51,6 +52,10 @@ func _process(_delta: float) -> void:
 
 func _finish_attack():
 	self.hide()
+	
+	if is_instance_valid(_original_weapon):
+		_original_weapon.show()
+		
 	if cloned_weapon:
 		await get_tree().create_timer(0.1,false).timeout
 		cloned_weapon.queue_free()
