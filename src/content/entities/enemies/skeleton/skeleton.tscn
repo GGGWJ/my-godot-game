@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://df7mjlhl8x386" path="res://src/content/vfx/hit_particles.tscn" id="7_jafab"]
 [ext_resource type="Script" uid="uid://dxrpi2hjaj7tl" path="res://src/framework/components/pathfinding.gd" id="10_tgcwm"]
 [ext_resource type="Script" uid="uid://biw5jtfjtac2i" path="res://src/framework/stats/enemy_stats.gd" id="11_stats"]
+[ext_resource type="Resource" path="res://resources/stats/enemies/skeleton_basic.tres" id="12_stats_res"]
 
 [sub_resource type="Resource" id="SubResource_skeleton_stats"]
 script = ExtResource("11_stats")
@@ -345,7 +346,7 @@ colors = PackedColorArray(0.3553136, 0.35531354, 0.35531357, 1, 1, 1, 1, 1, 1, 1
 z_index = 100
 scale = Vector2(0.8, 0.8)
 script = ExtResource("1_mb7nf")
-stats = SubResource("SubResource_skeleton_stats")
+stats = ExtResource("12_stats_res")
 
 [node name="PhysicsCollision" type="CollisionShape2D" parent="."]
 position = Vector2(-2.5, 10)

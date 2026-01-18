@@ -1,7 +1,8 @@
 class_name Ability
 extends Node
 
-@export var icon_texture:Texture2D
+@export var icon_texture: Texture2D
+@export var stats: AbilityStats # 新增：引用外部数据资源
 @export var cooldown: float = 2
 
 var current_cooldown: float

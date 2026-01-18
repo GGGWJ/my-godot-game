@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://ws0p61672too" path="res://assets/audio/Super Dialogue Audio Pack v1/Step 2 - Audio Files/1 - Completion/Female/Karen Cenon/completion_1_karen.wav" id="14_3ldfj"]
 [ext_resource type="AudioStream" uid="uid://cbdko380422l" path="res://assets/audio/Super Dialogue Audio Pack v1/Step 2 - Audio Files/1 - Completion/Female/Karen Cenon/completion_2_karen.wav" id="15_tj2ge"]
 [ext_resource type="AudioStream" uid="uid://c0xcpupf3341l" path="res://assets/audio/Super Dialogue Audio Pack v1/Step 2 - Audio Files/1 - Completion/Female/Karen Cenon/completion_3_karen.wav" id="16_o05fh"]
+[ext_resource type="Resource" path="res://resources/stats/abilities/slash_lv1.tres" id="17_stats_res"]
 
 [sub_resource type="Resource" id="Resource_tj2ge"]
 script = ExtResource("10_3ldfj")
@@ -33,7 +34,8 @@ metadata/_custom_type_script = "uid://clo7b3t1pq370"
 [node name="SlashAbility" type="Node"]
 script = ExtResource("1_se5wr")
 icon_texture = ExtResource("2_tj2ge")
-cooldown = 0.5
+stats = ExtResource("17_stats_res")
+cooldown = 0.0
 
 [node name="SpawnManifest" type="Node" parent="."]
 script = ExtResource("2_e41qq")
@@ -58,11 +60,11 @@ exec_delay = 0.2
 
 [node name="AbilityGetTargets" type="Node" parent="DealDamageGroup"]
 script = ExtResource("6_37852")
-radius = 50.0
+radius = 0.0
 
 [node name="AbilityDealDamage" type="Node" parent="DealDamageGroup"]
 script = ExtResource("7_37852")
-damage = 14.0
+damage = 0.0
 metadata/_custom_type_script = "uid://1f1iy64navpu"
 
 [node name="playImpactSound" type="Node" parent="DealDamageGroup/AbilityDealDamage"]

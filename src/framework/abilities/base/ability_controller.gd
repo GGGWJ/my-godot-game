@@ -35,11 +35,15 @@ func trigger_ability(ability: Ability):
 		print("Ability is null!")
 		return
 
-	# cooldowns.get(ability) 无默认值时，键不存在会返回null，null和数字比较会直接报错；
-	# cooldowns.get(ability,0.0) 强制返回 float 类型（存在返回冷却时间，不存在返回 0.0），保证比较逻辑不报错；
-	# 这是 GDScript 处理字典的核心健壮性技巧，尤其是数字比较 / 运算场景，一定要给默认值，避免空值导致程序崩溃。
-	if cooldowns.get(ability,0.0) >0.0 :
+	# 健壮性检查：使用字典 get 方法并提供默认值 0.0，避免空值导致比较报错
+	if cooldowns.get(ability, 0.0) > 0.0:
 		return
 
 	ability.activate(entity)
-	cooldowns[ability] = ability.cooldown
+	
+	# 数据驱动：优先从 AbilityStats 获取冷却时间
+	var cd: float = ability.cooldown
+	if ability.stats:
+		cd = ability.stats.cooldown
+		
+	cooldowns[ability] = cd

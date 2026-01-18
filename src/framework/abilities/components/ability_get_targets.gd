@@ -1,10 +1,14 @@
 class_name AbilityGetTargets
 extends AbilityComponent
 
-@export var radius: float = 100.0
+@export var radius: float = 0 # 0 表示尝试从 Stats 资源读取
 
 func _activate(context: AbilityContext):
-	var targets = check_colliders_around_position(context.caster, radius)
+	var final_radius = radius
+	if final_radius <= 0 and context.ability.stats:
+		final_radius = context.ability.stats.parameters.get("radius", 50.0)
+		
+	var targets = check_colliders_around_position(context.caster, final_radius)
 	context.targets = targets
 
 func check_colliders_around_position(caster:Entity, p_radius: float) -> Array[Entity]:

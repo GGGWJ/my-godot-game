@@ -15,7 +15,12 @@ func _ready() -> void:
 
 func _on_player_ready(player: Player) -> void:
 	# 初始状态同步
-	set_health(player.current_health, player.stats.max_health)
+	if player.stats:
+		set_health(player.current_health, player.stats.max_health)
+	else:
+		# 如果还没加载 stats，监听信号（player_stats 通常在 _ready 加载）
+		# 这里可以设置一个默认值或者等待
+		print("Warning: Player stats not yet loaded in health bar")
 
 func set_health(current_health: float, max_health: float) -> void:
 	print("更新血条：%f / %f" % [current_health, max_health])

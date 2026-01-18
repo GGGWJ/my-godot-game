@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AbilityStats" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/framework/stats/ability_stats.gd" id="1_stats"]
+
+[resource]
+script = ExtResource("1_stats")
+ability_name = "冲刺"
+description = "向鼠标方向快速位移"
+cooldown = 0.8
+mana_cost = 0.0
+parameters = {
+	"push_back_distance": 100.0,
+	"push_back_duration": 0.2
+}

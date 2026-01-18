@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AbilityStats" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/framework/stats/ability_stats.gd" id="1_stats"]
+
+[resource]
+script = ExtResource("1_stats")
+ability_name = "飞剑"
+description = "远程投掷武器"
+cooldown = 1.2
+mana_cost = 0.0
+parameters = {
+	"damage": 8.0,
+	"speed": 400.0,
+	"range": 300.0
+}

@@ -7,11 +7,13 @@
 [ext_resource type="Script" uid="uid://fmcldq7g6ogg" path="res://src/framework/abilities/components/ability_target_cursor.gd" id="4_uncve"]
 [ext_resource type="Script" uid="uid://ci7f4rcjapq7t" path="res://src/framework/abilities/components/ability_spawn_manifest.gd" id="5_13egv"]
 [ext_resource type="PackedScene" uid="uid://cgxmblehw5cah" path="res://src/content/manifestation/projectile/weapon_throw_manifest.tscn" id="6_uncve"]
+[ext_resource type="Resource" path="res://resources/stats/abilities/weapon_throw.tres" id="7_stats_res"]
 
 [node name="WeaponThrowAbility" type="Node"]
 script = ExtResource("1_dmgyh")
 icon_texture = ExtResource("2_353ni")
-cooldown = 0.5
+stats = ExtResource("7_stats_res")
+cooldown = 0.0
 
 [node name="AbilityAnimationRunner" type="Node" parent="."]
 script = ExtResource("2_xdcrg")

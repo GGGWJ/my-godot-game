@@ -4,11 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://pctgj502ey86" path="res://assets/textures/icon/Free - Raven Fantasy Icons/Separated Files/64x64/fc725.png" id="2_uqs5r"]
 [ext_resource type="Script" uid="uid://bcw8tr5210k33" path="res://src/framework/abilities/components/ability_push_back.gd" id="3_imm31"]
 [ext_resource type="Script" uid="uid://wbwuat2hfaqa" path="res://src/framework/abilities/components/ability_trail.gd" id="4_trail"]
+[ext_resource type="Resource" path="res://resources/stats/abilities/dash.tres" id="5_stats_res"]
 
 [node name="DashAbility" type="Node"]
 script = ExtResource("1_12vgi")
 icon_texture = ExtResource("2_uqs5r")
-cooldown = 1.0
+stats = ExtResource("5_stats_res")
+cooldown = 0.0
 metadata/_custom_type_script = "uid://mju3ujqfhuf8"
 
 [node name="AbilityPushBack" type="Node" parent="."]

@@ -30,7 +30,10 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if is_dead: return
 
-	# 处理输入并计算速度
+	# 如果有状态机，逻辑由状态机接管
+	if fsm: return
+
+	# 处理输入并计算速度 (Legacy 模式)
 	_handle_input()
 
 func _handle_input() -> void:
@@ -41,13 +44,9 @@ func _handle_input() -> void:
 	var movement = Vector2(horizontal, vertical)
 	var n_movement = movement.normalized()
 
-	# 更新速度，物理移动在基类 move_and_slide() 中完成
-	if stats:
-		velocity = n_movement * stats.speed
-		if n_movement.length() > 0.1:
-			facing_direction = n_movement
-	else:
-		velocity = Vector2.ZERO
+	# 现在的逻辑：不再自己算 velocity，而是传给 MoverComponent
+	if mover_component:
+		mover_component.move_in_direction(n_movement)
 
 	is_moving = n_movement.length() > 0
 

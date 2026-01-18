@@ -47,14 +47,24 @@ func _process(_delta: float):
 	else:
 		cooldownlabel.text = ""
 
-func set_ability(_ability:Ability):
+func set_ability(_ability: Ability):
 	print("绑定技能：%s" % _ability.name)
 
 	# 自带的禁用技能按钮功能，disabled=false表示启用按钮
 	disabled = false
 	ability = _ability
-	icon.texture = _ability.icon_texture
-	progress_bar.max_value = _ability.cooldown
+	
+	# 数据驱动：优先从 stats 获取图标和冷却上限
+	var cd = _ability.cooldown
+	var tex = _ability.icon_texture
+	
+	if _ability.stats:
+		cd = _ability.stats.cooldown
+		if _ability.stats.icon:
+			tex = _ability.stats.icon
+			
+	icon.texture = tex
+	progress_bar.max_value = cd
 	cooldownlabel.text = ""
 
 func _on_pressed() -> void:
