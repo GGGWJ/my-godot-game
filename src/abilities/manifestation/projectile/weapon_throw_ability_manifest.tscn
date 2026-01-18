@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cgxmblehw5cah"]
 
-[ext_resource type="Script" uid="uid://dh57qs5mx5qwc" path="res://scripts/ability/manifest/projectile_manifest.gd" id="1_biu64"]
+[ext_resource type="Script" uid="uid://dh57qs5mx5qwc" path="res://src/abilities/manifestation/projectile/projectile_manifest.gd" id="1_biu64"]
 [ext_resource type="Texture2D" uid="uid://o011mrvlw5iq" path="res://assets/textures/weapons/Sprites/dagger.png" id="2_vq5us"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_1iv0l"]

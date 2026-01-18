@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://b4telgflk2jko"]
 
-[ext_resource type="Script" uid="uid://mju3ujqfhuf8" path="res://scripts/ability/core/ability.gd" id="1_1w75i"]
-[ext_resource type="Script" uid="uid://conblm46oyvdc" path="res://scripts/ability/component/ability_animation_runner.gd" id="2_or6sr"]
-[ext_resource type="Script" uid="uid://1f1iy64navpu" path="res://scripts/ability/component/ability_deal_damage.gd" id="3_n23n6"]
-[ext_resource type="Script" uid="uid://6d10xic78swb" path="res://scripts/ability/component/ability_target_player.gd" id="4_s5q2f"]
+[ext_resource type="Script" uid="uid://mju3ujqfhuf8" path="res://src/abilities/core/ability.gd" id="1_1w75i"]
+[ext_resource type="Script" uid="uid://conblm46oyvdc" path="res://src/abilities/components/ability_animation_runner.gd" id="2_or6sr"]
+[ext_resource type="Script" uid="uid://1f1iy64navpu" path="res://src/abilities/components/ability_deal_damage.gd" id="3_n23n6"]
+[ext_resource type="Script" uid="uid://6d10xic78swb" path="res://src/abilities/components/ability_target_player.gd" id="4_s5q2f"]
 
 [node name="SkeletonStash" type="Node2D"]
 script = ExtResource("1_1w75i")

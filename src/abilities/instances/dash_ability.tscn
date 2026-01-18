@@ -1,9 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://bxh4m30iibcn5"]
 
-[ext_resource type="Script" uid="uid://mju3ujqfhuf8" path="res://scripts/ability/core/ability.gd" id="1_12vgi"]
+[ext_resource type="Script" uid="uid://mju3ujqfhuf8" path="res://src/abilities/core/ability.gd" id="1_12vgi"]
 [ext_resource type="Texture2D" uid="uid://pctgj502ey86" path="res://assets/textures/icon/Free - Raven Fantasy Icons/Separated Files/64x64/fc725.png" id="2_uqs5r"]
-[ext_resource type="Script" uid="uid://bcw8tr5210k33" path="res://scripts/ability/component/ability_push_back.gd" id="3_imm31"]
-[ext_resource type="Script" uid="uid://wbwuat2hfaqa" path="res://scripts/ability/component/ability_trail.gd" id="4_trail"]
+[ext_resource type="Script" uid="uid://bcw8tr5210k33" path="res://src/abilities/components/ability_push_back.gd" id="3_imm31"]
+[ext_resource type="Script" uid="uid://wbwuat2hfaqa" path="res://src/abilities/components/ability_trail.gd" id="4_trail"]
 
 [node name="DashAbility" type="Node"]
 script = ExtResource("1_12vgi")
