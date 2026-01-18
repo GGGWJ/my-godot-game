@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://mju3ujqfhuf8" path="res://src/abilities/core/ability.gd" id="1_se5wr"]
 [ext_resource type="Script" uid="uid://ci7f4rcjapq7t" path="res://src/abilities/components/ability_spawn_manifest.gd" id="2_e41qq"]
 [ext_resource type="Texture2D" uid="uid://cicasvc46olih" path="res://assets/textures/icon/Free - Raven Fantasy Icons/Separated Files/64x64/fc728.png" id="2_tj2ge"]
-[ext_resource type="PackedScene" uid="uid://b1ukbthaa71ng" path="res://src/abilities/manifestation/slash/slash_ability_manifest.tscn" id="3_7vueh"]
+[ext_resource type="PackedScene" uid="uid://b1ukbthaa71ng" path="res://src/abilities/manifestation/slash/slash_manifest.tscn" id="3_7vueh"]
 [ext_resource type="Script" uid="uid://bcw8tr5210k33" path="res://src/abilities/components/ability_push_back.gd" id="4_1oiae"]
 [ext_resource type="Script" uid="uid://vgoe2ulg7p2l" path="res://src/abilities/components/ability_turn_to_mouse.gd" id="5_wm4fp"]
 [ext_resource type="Script" uid="uid://geu3um4cgjis" path="res://src/abilities/components/ability_get_targets.gd" id="6_37852"]

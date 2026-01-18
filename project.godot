@@ -14,6 +14,10 @@ config/name="Test_1"
 run/main_scene="uid://b0itg3kq1ytwa"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 
+[audio]
+
+buses/default_bus_layout="res://resources/audio/default_bus_layout.tres"
+
 [autoload]
 
 ResourceLocator="*res://src/core/autoload/resource_locator.gd"

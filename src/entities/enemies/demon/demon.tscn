@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://duvhemovfxgjw" path="res://assets/textures/Flying Demon 2D Pixel Art/Sprites/without_outline/FLYING.png" id="6_02e83"]
 [ext_resource type="PackedScene" uid="uid://df7mjlhl8x386" path="res://src/common/vfx/hit_particles.tscn" id="7_mr2xe"]
 [ext_resource type="Script" uid="uid://dml80icbdg7ls" path="res://src/abilities/core/ability_controller.gd" id="8_3pxp0"]
-[ext_resource type="PackedScene" uid="uid://buw0vxxhhtx3w" path="res://src/abilities/instances/fireball_ability.tscn" id="9_pdsyd"]
+[ext_resource type="PackedScene" uid="uid://buw0vxxhhtx3w" path="res://src/abilities/instances/enemy/fireball_ability.tscn" id="9_pdsyd"]
 [ext_resource type="Script" uid="uid://dxrpi2hjaj7tl" path="res://src/common/components/pathfinding.gd" id="10_hrbwj"]
 [ext_resource type="Script" uid="uid://biw5jtfjtac2i" path="res://resources/stats/enemy_stats.gd" id="11_stats"]
 

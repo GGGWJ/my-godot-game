@@ -1,37 +1,37 @@
-[gd_scene load_steps=17 format=3 uid="uid://vufl1uwi06te"]
+[gd_scene load_steps=17 format=3 uid="uid://b7knm8qlixf5v"]
 
-[ext_resource type="Script" path="res://src/abilities/manifestation/projectile/projectile_manifest.gd" id="1_qc2hn"]
-[ext_resource type="AudioStream" uid="uid://csh8nalujru7h" path="res://assets/audio/DSGNImpt_EXPLOSION-Fire Hit_HY_PC-001.wav" id="2_6tl2j"]
-[ext_resource type="Script" uid="uid://clo7b3t1pq370" path="res://resources/stats/audio_config.gd" id="3_iruqu"]
-[ext_resource type="Texture2D" uid="uid://vccmocgsgbvt" path="res://assets/textures/FB00_nyknck/FB001.png" id="4_vvayr"]
-[ext_resource type="Texture2D" uid="uid://dihpaljis4yma" path="res://assets/textures/FB00_nyknck/FB002.png" id="5_22gp4"]
-[ext_resource type="Texture2D" uid="uid://cs5yfgkankiuq" path="res://assets/textures/FB00_nyknck/FB003.png" id="6_swirq"]
-[ext_resource type="Texture2D" uid="uid://dnlvdhaifc6bx" path="res://assets/textures/FB00_nyknck/FB004.png" id="7_sjxo6"]
-[ext_resource type="Texture2D" uid="uid://dcb8l320smc0h" path="res://assets/textures/FB00_nyknck/FB005.png" id="8_wkovj"]
+[ext_resource type="Script" uid="uid://dh57qs5mx5qwc" path="res://src/abilities/manifestation/projectile/base/projectile_manifest.gd" id="1_1pj3r"]
+[ext_resource type="Texture2D" uid="uid://vccmocgsgbvt" path="res://assets/textures/FB00_nyknck/FB001.png" id="2_1pj3r"]
+[ext_resource type="AudioStream" uid="uid://csh8nalujru7h" path="res://assets/audio/DSGNImpt_EXPLOSION-Fire Hit_HY_PC-001.wav" id="2_hg1ah"]
+[ext_resource type="Script" uid="uid://clo7b3t1pq370" path="res://resources/stats/audio_config.gd" id="3_ggx20"]
+[ext_resource type="Texture2D" uid="uid://dihpaljis4yma" path="res://assets/textures/FB00_nyknck/FB002.png" id="3_uv28u"]
+[ext_resource type="Texture2D" uid="uid://cs5yfgkankiuq" path="res://assets/textures/FB00_nyknck/FB003.png" id="4_hg1ah"]
+[ext_resource type="Texture2D" uid="uid://dnlvdhaifc6bx" path="res://assets/textures/FB00_nyknck/FB004.png" id="5_ggx20"]
+[ext_resource type="Texture2D" uid="uid://dcb8l320smc0h" path="res://assets/textures/FB00_nyknck/FB005.png" id="6_oc3ko"]
 
 [sub_resource type="Resource" id="Resource_oc3ko"]
-script = ExtResource("3_iruqu")
-audio_streams = Array[AudioStream]([ExtResource("2_6tl2j")])
+script = ExtResource("3_ggx20")
+audio_streams = Array[AudioStream]([ExtResource("2_hg1ah")])
 metadata/_custom_type_script = "uid://clo7b3t1pq370"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vuwbt"]
-atlas = ExtResource("4_vvayr")
+atlas = ExtResource("2_1pj3r")
 region = Rect2(0, 0, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qsw3o"]
-atlas = ExtResource("5_22gp4")
+atlas = ExtResource("3_uv28u")
 region = Rect2(0, 0, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rskms"]
-atlas = ExtResource("6_swirq")
+atlas = ExtResource("4_hg1ah")
 region = Rect2(0, 0, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x5npf"]
-atlas = ExtResource("7_sjxo6")
+atlas = ExtResource("5_ggx20")
 region = Rect2(0, 0, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rguda"]
-atlas = ExtResource("8_wkovj")
+atlas = ExtResource("6_oc3ko")
 region = Rect2(0, 0, 64, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7hwns"]
@@ -61,7 +61,7 @@ animations = [{
 
 [node name="FireballAbilityManifest" type="Node2D"]
 z_index = 100
-script = ExtResource("1_qc2hn")
+script = ExtResource("1_1pj3r")
 speed = 50.0
 target_group = "player"
 max_distance = 200.0

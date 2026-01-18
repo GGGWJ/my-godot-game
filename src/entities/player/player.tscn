@@ -7,11 +7,11 @@
 [ext_resource type="AudioStream" uid="uid://fxwcrkns7ryr" path="res://assets/audio/Super Dialogue Audio Pack v1/Step 2 - Audio Files/2 - Confirmation/Female/Karen Cenon/confirmation_2_karen.wav" id="3_dk1vr"]
 [ext_resource type="Script" uid="uid://dml80icbdg7ls" path="res://src/abilities/core/ability_controller.gd" id="3_u4c7w"]
 [ext_resource type="AudioStream" uid="uid://dpoy3uwtga34d" path="res://assets/audio/Super Dialogue Audio Pack v1/Step 2 - Audio Files/2 - Confirmation/Female/Karen Cenon/confirmation_3_karen.wav" id="4_34jf3"]
-[ext_resource type="PackedScene" uid="uid://cdqlge8i51rl8" path="res://src/abilities/instances/slash_ability.tscn" id="4_hsluc"]
+[ext_resource type="PackedScene" uid="uid://cdqlge8i51rl8" path="res://src/abilities/instances/player/slash_ability.tscn" id="4_hsluc"]
 [ext_resource type="Script" uid="uid://clo7b3t1pq370" path="res://resources/stats/audio_config.gd" id="5_u7b46"]
-[ext_resource type="PackedScene" uid="uid://cjd3rf4cwyok1" path="res://src/abilities/instances/weapon_throw_ability.tscn" id="6_hp4bs"]
+[ext_resource type="PackedScene" uid="uid://cjd3rf4cwyok1" path="res://src/abilities/instances/player/weapon_throw_ability.tscn" id="6_hp4bs"]
 [ext_resource type="Texture2D" uid="uid://uy6223ctvcdh" path="res://assets/textures/weapons/Sprites/lightsaber_blue.png" id="6_oh5ij"]
-[ext_resource type="PackedScene" uid="uid://bxh4m30iibcn5" path="res://src/abilities/instances/dash_ability.tscn" id="11_34jf3"]
+[ext_resource type="PackedScene" uid="uid://bxh4m30iibcn5" path="res://src/abilities/instances/player/dash_ability.tscn" id="11_34jf3"]
 [ext_resource type="Script" uid="uid://bpuvnxlh6vwu6" path="res://src/common/components/footstep_effect.gd" id="12_dk1vr"]
 [ext_resource type="Script" uid="uid://b4noihxhrlpvq" path="res://resources/stats/player_stats.gd" id="13_stats"]
 
@@ -307,7 +307,6 @@ shape = SubResource("CapsuleShape2D_hp4bs")
 current = true
 
 [node name="FootstepEffect" type="Node2D" parent="."]
-visible = false
 position = Vector2(1, 16)
 scale = Vector2(0.2, 0.2)
 script = ExtResource("12_dk1vr")
