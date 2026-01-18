@@ -12,7 +12,11 @@ extends AbilityManifest
 var current_dir: Vector2 = Vector2.ZERO
 var current_distance: float = 0.0
 
+signal projectile_hit(target: Entity)
+signal projectile_fired()
+
 func activate(context: AbilityContext):
+	projectile_fired.emit()
 	if context.targets.size()>0:
 		var target_pos = context.get_target_position(0)
 		current_dir = (target_pos - global_position).normalized()
@@ -35,9 +39,18 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 	if parent != null and parent.is_in_group(target_group):
 		if parent is Entity:
-			parent.apply_damage(damage)
+			_handle_impact(parent)
 
-			if hit_sound != null:
-				AudioController.play(hit_sound, global_position)
-
-			queue_free()
+func _handle_impact(target: Entity) -> void:
+	# 逻辑：施加伤害
+	target.apply_damage(damage)
+	
+	# 表现：发射信号（可用于触发爆炸特效、打击音效等）
+	projectile_hit.emit(target)
+	
+	# 如果有简单音效配置，直接播放（或由表现层监听信号播放）
+	if hit_sound != null:
+		AudioController.play(hit_sound, global_position)
+	
+	# 销毁
+	queue_free()

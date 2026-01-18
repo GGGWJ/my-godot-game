@@ -19,7 +19,9 @@ func _activate(context: AbilityContext):
 	alternate_slash = not alternate_slash
 	animated_sprite.flip_v = alternate_slash
 
-	_original_weapon = context.caster.find_child("Weapon", true, false) as Node2D
+	var visual = context.caster.get_visual()
+	if visual:
+		_original_weapon = visual.get_weapon_node()
 
 	# 给武器添加一个偏移量
 	if _original_weapon != null:

@@ -8,6 +8,7 @@ var is_acting: bool = false
 var current_health: float
 
 signal health_changed(current_health: float, max_health: float)
+signal damaged(amount: float) # 传递受到的伤害数值
 signal died(entity: Entity)
 signal animation_requested(anim_name: String, is_high_priority: bool)
 
@@ -28,9 +29,9 @@ func apply_damage(damage: float) -> void:
 
 	current_health -= damage
 	current_health = max(0, current_health)
-	_show_damage_popup(damage)
-
-	# 发送生命值变化信号，用来监听视觉反馈
+	
+	# 发送信号，由表现层决定如何展示（飘字、震屏等）
+	damaged.emit(damage)
 	health_changed.emit(current_health, stats.max_health)
 
 	if current_health <= 0:
@@ -49,8 +50,6 @@ func play_anim(anim_name: String, is_high_priority: bool = false) -> void:
 func on_action_finished() -> void:
 	is_acting = false
 
-func _show_damage_popup(damage: float) -> void:
-	# 逻辑高度建议放入 Stats 或通过信号由表现层处理，这里暂时由逻辑层估算
-	var spawn_pos = Vector2(global_position.x, global_position.y - 20)
-	FloatText.show_damage_text(str(damage), spawn_pos, stats.damage_text_color)
+func get_visual() -> EntityVisual:
+	return get_node_or_null("Visual") as EntityVisual
 	
