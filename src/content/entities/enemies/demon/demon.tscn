@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://src/content/entities/enemies/states/enemy_idle.gd" id="16_idle"]
 [ext_resource type="Script" path="res://src/content/entities/enemies/states/enemy_chase.gd" id="17_chase"]
 [ext_resource type="Script" path="res://src/content/entities/enemies/states/enemy_attack.gd" id="18_attack"]
+[ext_resource type="Script" path="res://src/framework/components/combat/hurtbox.gd" id="19_hurtbox"]
 
 [sub_resource type="Resource" id="SubResource_demon_stats"]
 script = ExtResource("11_stats")
@@ -259,9 +260,13 @@ metadata/_custom_type_script = "uid://cp6ya7fsfvppx"
 
 [node name="FireballAbility" parent="AbilityController" instance=ExtResource("9_pdsyd")]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("19_hurtbox")
+team = "Enemy"
 
-[node name="HurtboxCollision" type="CollisionShape2D" parent="Area2D"]
+[node name="HurtboxCollision" type="CollisionShape2D" parent="Hurtbox"]
 scale = Vector2(3.1348197, 3.1100457)
 shape = SubResource("CircleShape2D_pdsyd")
 

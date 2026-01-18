@@ -17,6 +17,20 @@ signal projectile_fired()
 
 func activate(context: AbilityContext):
 	projectile_fired.emit()
+	
+	# 初始化 Hitbox 数据
+	var hitbox = get_node_or_null("Hitbox")
+	if hitbox and hitbox is Hitbox:
+		hitbox.damage_amount = damage
+		# 如果是敌人发射的，设置 Team 为 Enemy
+		if context.caster.is_in_group("enemy"):
+			hitbox.team = "Enemy"
+		elif context.caster.is_in_group("player"):
+			hitbox.team = "Player"
+		
+		# 连接命中信号用于销毁
+		hitbox.hit_hurtbox.connect(_on_hitbox_hit)
+
 	if context.targets.size()>0:
 		var target_pos = context.get_target_position(0)
 		current_dir = (target_pos - global_position).normalized()
@@ -33,6 +47,19 @@ func _process(delta: float) -> void:
 		if current_distance >= max_distance:
 			queue_free()
 
+
+func _on_hitbox_hit(_hurtbox: Hurtbox) -> void:
+	# 表现：发射信号（可用于触发爆炸特效、打击音效等）
+	# 注意：这里的 target 我们可以从 hurtbox.entity 获取
+	if _hurtbox.entity:
+		projectile_hit.emit(_hurtbox.entity)
+	
+	# 如果有简单音效配置，直接播放
+	if hit_sound != null:
+		AudioController.play(hit_sound, global_position)
+	
+	# 销毁
+	queue_free()
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	var parent = area.get_parent()

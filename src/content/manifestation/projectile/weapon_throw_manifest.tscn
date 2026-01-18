@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://dh57qs5mx5qwc" path="res://src/framework/abilities/base/projectile_manifest.gd" id="1_biu64"]
 [ext_resource type="Texture2D" uid="uid://o011mrvlw5iq" path="res://assets/textures/weapons/Sprites/dagger.png" id="2_vq5us"]
 
+[ext_resource type="Script" path="res://src/framework/components/combat/hitbox.gd" id="3_hitbox"]
+
 [sub_resource type="CanvasTexture" id="CanvasTexture_1iv0l"]
 diffuse_texture = ExtResource("2_vq5us")
 
@@ -22,10 +24,12 @@ rotation_speed = 720.0
 texture_filter = 1
 texture = SubResource("CanvasTexture_1iv0l")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 4
+script = ExtResource("3_hitbox")
+team = "Player"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_jcyxe")
-
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -11,6 +11,7 @@ var facing_direction: Vector2 = Vector2.RIGHT # 逻辑上的朝向
 var health_component: HealthComponent
 var mover_component: MoverComponent
 var fsm: FiniteStateMachine
+var hurtbox: Hurtbox
 
 # 向后兼容的存取器
 var current_health: float:
@@ -28,6 +29,7 @@ func _ready() -> void:
 	_setup_health_component()
 	_setup_mover_component()
 	_setup_fsm()
+	_setup_combat_components()
 	
 	if stats and health_component:
 		health_component.initialize(stats.max_health)
@@ -56,6 +58,16 @@ func _setup_mover_component() -> void:
 
 func _setup_fsm() -> void:
 	fsm = get_node_or_null("FSM")
+
+func _setup_combat_components() -> void:
+	# 寻找 Hurtbox，它通常是 Area2D
+	hurtbox = get_node_or_null("Hurtbox")
+	if not hurtbox:
+		# 尝试在子节点中递归寻找
+		for child in get_children():
+			if child is Hurtbox:
+				hurtbox = child
+				break
 
 func _physics_process(_delta: float) -> void:
 	if is_dead: 

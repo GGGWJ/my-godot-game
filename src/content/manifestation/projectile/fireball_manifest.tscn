@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://dnlvdhaifc6bx" path="res://assets/textures/FB00_nyknck/FB004.png" id="5_ggx20"]
 [ext_resource type="Texture2D" uid="uid://dcb8l320smc0h" path="res://assets/textures/FB00_nyknck/FB005.png" id="6_oc3ko"]
 
+[ext_resource type="Script" path="res://src/framework/components/combat/hitbox.gd" id="7_hitbox"]
+
 [sub_resource type="Resource" id="Resource_oc3ko"]
 script = ExtResource("3_ggx20")
 audio_streams = Array[AudioStream]([ExtResource("2_hg1ah")])
@@ -73,10 +75,12 @@ sprite_frames = SubResource("SpriteFrames_7hwns")
 autoplay = "default"
 frame_progress = 0.38300714
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("7_hitbox")
+team = "Enemy"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(10, 0)
 shape = SubResource("CircleShape2D_1pj3r")
-
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

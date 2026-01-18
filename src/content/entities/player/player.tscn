@@ -23,6 +23,8 @@
 [ext_resource type="Script" path="res://src/content/entities/player/states/player_idle.gd" id="18_idle"]
 [ext_resource type="Script" path="res://src/content/entities/player/states/player_move.gd" id="19_move"]
 
+[ext_resource type="Script" path="res://src/framework/components/combat/hurtbox.gd" id="20_hurtbox"]
+
 [sub_resource type="Resource" id="Resource_j4wxg"]
 script = ExtResource("5_u7b46")
 audio_streams = Array[AudioStream]([ExtResource("2_ihjo1"), ExtResource("3_dk1vr"), ExtResource("4_34jf3")])
@@ -293,6 +295,16 @@ script = ExtResource("18_idle")
 script = ExtResource("19_move")
 
 [node name="PhysicsCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_player")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("20_hurtbox")
+team = "Player"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_player")
 

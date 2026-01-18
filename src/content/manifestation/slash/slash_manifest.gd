@@ -5,6 +5,7 @@ extends AbilityManifest
 static var alternate_slash: bool = true
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var hitbox: Hitbox = $Hitbox
 @export var rotation_offset: float = 0.0
 
 var cloned_weapon: Node2D
@@ -14,6 +15,13 @@ var _original_weapon: Node2D
 func _activate(context: AbilityContext):
 	var mouse_pos = get_viewport().get_camera_2d().get_global_mouse_position()
 	look_at(mouse_pos)
+
+	# 初始化攻击盒数据
+	if hitbox:
+		if context.ability.stats:
+			hitbox.damage_amount = context.ability.stats.parameters.get("damage", 10.0)
+			hitbox.knockback_force = context.ability.stats.parameters.get("knockback", 0.0)
+		hitbox.team = "Player" # 或者从 context.caster 获取
 
 	# 交替挥砍武器方向
 	alternate_slash = not alternate_slash

@@ -21,6 +21,8 @@
 [ext_resource type="Script" path="res://src/content/entities/enemies/states/enemy_chase.gd" id="17_chase"]
 [ext_resource type="Script" path="res://src/content/entities/enemies/states/enemy_attack.gd" id="18_attack"]
 
+[ext_resource type="Script" path="res://src/framework/components/combat/hurtbox.gd" id="19_hurtbox"]
+
 [sub_resource type="Resource" id="SubResource_skeleton_stats"]
 script = ExtResource("11_stats")
 stop_distance = 20.0
@@ -386,9 +388,13 @@ metadata/_custom_type_script = "uid://cp6ya7fsfvppx"
 
 [node name="SkeletonStash" parent="AbilityController" instance=ExtResource("6_lm2m6")]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("19_hurtbox")
+team = "Enemy"
 
-[node name="HurtboxCollision" type="CollisionShape2D" parent="Area2D"]
+[node name="HurtboxCollision" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(-2.4999998, 10)
 shape = SubResource("CapsuleShape2D_d7bxq")
 

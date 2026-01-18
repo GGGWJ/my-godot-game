@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://cfggrvs3o8w4u" path="res://assets/textures/SlashEffect/NPT102.png" id="4_tkgv5"]
 [ext_resource type="Texture2D" uid="uid://d0feud232wwvu" path="res://assets/textures/SlashEffect/NPT103.png" id="5_cynk2"]
 
+[ext_resource type="Script" path="res://src/framework/components/combat/hitbox.gd" id="6_hitbox"]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_4xcvh"]
 atlas = ExtResource("1_qyx4o")
 region = Rect2(128, 384, 128, 128)
@@ -34,6 +36,9 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_7hwns"]
+radius = 40.0
+
 [node name="SlashAbilityManifest" type="Node2D"]
 z_index = 100
 script = ExtResource("1_kljft")
@@ -45,3 +50,12 @@ sprite_frames = SubResource("SpriteFrames_7hwns")
 autoplay = "default"
 frame = 4
 frame_progress = 1.0
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("6_hitbox")
+team = "Player"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_7hwns")
