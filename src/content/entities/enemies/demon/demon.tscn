@@ -14,6 +14,13 @@
 [ext_resource type="Script" uid="uid://biw5jtfjtac2i" path="res://src/framework/stats/enemy_stats.gd" id="11_stats"]
 [ext_resource type="Resource" path="res://resources/stats/enemies/demon_basic.tres" id="12_stats_res"]
 
+[ext_resource type="Script" path="res://src/framework/components/health_component.gd" id="13_health"]
+[ext_resource type="Script" path="res://src/framework/components/mover_component.gd" id="14_mover"]
+[ext_resource type="Script" path="res://src/framework/components/state_machine/fsm.gd" id="15_fsm"]
+[ext_resource type="Script" path="res://src/content/entities/enemies/states/enemy_idle.gd" id="16_idle"]
+[ext_resource type="Script" path="res://src/content/entities/enemies/states/enemy_chase.gd" id="17_chase"]
+[ext_resource type="Script" path="res://src/content/entities/enemies/states/enemy_attack.gd" id="18_attack"]
+
 [sub_resource type="Resource" id="SubResource_demon_stats"]
 script = ExtResource("11_stats")
 stop_distance = 100.0
@@ -221,6 +228,27 @@ z_index = 100
 scale = Vector2(-0.5, 0.5)
 script = ExtResource("1_pdsyd")
 stats = ExtResource("12_stats_res")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("13_health")
+
+[node name="MoverComponent" type="Node" parent="."]
+script = ExtResource("14_mover")
+acceleration = 500.0
+friction = 300.0
+
+[node name="FSM" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("15_fsm")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="FSM"]
+script = ExtResource("16_idle")
+
+[node name="Chase" type="Node" parent="FSM"]
+script = ExtResource("17_chase")
+
+[node name="Attack" type="Node" parent="FSM"]
+script = ExtResource("18_attack")
 
 [node name="PhysicsCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_pdsyd")

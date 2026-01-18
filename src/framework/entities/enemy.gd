@@ -16,7 +16,6 @@ const PATH_UPDATE_INTERVAL: float = 0.2
 func _ready() -> void:
 	super._ready()
 	
-	_last_path_update_time = randf_range(0, PATH_UPDATE_INTERVAL)
 	last_position = position
 	player = get_tree().get_first_node_in_group("player") as Player
 	add_to_group("enemy")
@@ -29,6 +28,10 @@ func _physics_process(delta: float) -> void:
 	
 	if is_dead: return
 
+	# 如果有状态机，逻辑由状态机接管
+	if fsm: return
+
+	# --- Legacy Logic (如果没有挂载 FSM 节点则执行) ---
 	# 动作锁定检查
 	if is_acting:
 		if mover_component:
