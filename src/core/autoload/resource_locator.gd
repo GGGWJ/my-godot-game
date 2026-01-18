@@ -4,22 +4,29 @@ extends Node
 
 var _play_scene: PlayScene = null
 
-var packed_play_scene: PackedScene = preload("res://src/scenes/play_scene/play_scene.tscn")
-var packed_home_scene: PackedScene = preload("res://src/scenes/home_scene/home_scene.tscn")
-
-
+const MANIFEST_PATH = "res://resources/game_manifest.tres"
+var manifest: Resource
 
 func _ready() -> void:
-	_play_scene = get_tree().get_root().get_node("PlayScene") as PlayScene
+	if FileAccess.file_exists(MANIFEST_PATH):
+		manifest = load(MANIFEST_PATH)
+	
+	_play_scene = get_tree().get_root().get_node_or_null("PlayScene") as PlayScene
 
 func get_play_scene() -> PlayScene:
 	if _play_scene == null:
-		_play_scene = get_tree().get_root().get_node("PlayScene") as PlayScene
+		_play_scene = get_tree().get_root().get_node_or_null("PlayScene") as PlayScene
 	
 	return _play_scene
 
 func go_to_play_scene() -> void:
-	get_tree().change_scene_to_packed(packed_play_scene)
+	if manifest and manifest.play_scene:
+		get_tree().change_scene_to_packed(manifest.play_scene)
+	else:
+		push_error("Manifest or PlayScene missed!")
 
 func go_to_home_scene() -> void:
-	get_tree().change_scene_to_packed(packed_home_scene)
+	if manifest and manifest.home_scene:
+		get_tree().change_scene_to_packed(manifest.home_scene)
+	else:
+		push_error("Manifest or HomeScene missed!")

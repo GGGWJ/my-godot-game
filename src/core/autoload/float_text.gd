@@ -1,13 +1,15 @@
 extends Node
 
-@onready var damage_font = preload("res://assets/fonts/damage_font.tres")
-
 func show_damage_text(damage: String,spawn_pos:Vector2,color:Color) -> void:
 	var label = Label.new()
 	label.text = damage
 	label.z_index = 1000
 
 	label.label_settings = LabelSettings.new()
+
+	var damage_font = null
+	if ResourceLocator.manifest:
+		damage_font = ResourceLocator.manifest.damage_font
 
 	# 先放大，再缩小让字体高清
 	label.label_settings.font_size = 100

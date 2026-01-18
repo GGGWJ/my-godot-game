@@ -1,6 +1,5 @@
 extends PanelContainer
 
-@export var ability_button_scene: PackedScene = preload("res://src/ui/hud/spell_button/spell_button.tscn")
 @onready var container: HBoxContainer = $MarginContainer/HBoxContainer
 
 var _last_player: Player = null
@@ -26,6 +25,14 @@ func _on_player_ready(player: Player) -> void:
 	if not player.ability_controller or not player.ability_controller.abilities:
 		return
 	
+	var ability_button_scene = null
+	if ResourceLocator.manifest:
+		ability_button_scene = ResourceLocator.manifest.ability_button
+	
+	if not ability_button_scene:
+		push_error("Ability button scene not found in manifest!")
+		return
+
 	# 根据玩家技能动态创建按钮
 	var index = 1
 	for ability: Ability in player.ability_controller.abilities:
