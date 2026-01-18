@@ -18,6 +18,7 @@ func _ready() -> void:
 	entity.damaged.connect(_on_damaged)
 	entity.died.connect(_on_died)
 	entity.animation_requested.connect(_on_animation_requested)
+	entity.fsm_state_changed.connect(_on_fsm_state_changed)
 	
 	_setup_visual()
 
@@ -33,6 +34,11 @@ func _on_animation_requested(anim_name: String, is_high_priority: bool) -> void:
 	
 	_is_high_priority_playing = is_high_priority
 	_play_visual_animation(anim_name)
+
+func _on_fsm_state_changed(new_state: String, _old_state: String) -> void:
+	# 默认行为：尝试直接播放同名动画
+	# 例如 State 叫 "idle"，就播放 "idle" 动画
+	_play_visual_animation(new_state)
 
 func _play_visual_animation(_anim_name: String) -> void:
 	# 子类实现具体播放逻辑 (Sprite or AnimationPlayer)

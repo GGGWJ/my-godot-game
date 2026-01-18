@@ -6,6 +6,8 @@ extends Node
 
 @export var initial_state: State
 
+signal state_changed(new_state_name: String, old_state_name: String)
+
 var current_state: State
 var states: Dictionary = {}
 
@@ -45,6 +47,9 @@ func change_state(state_name: String) -> void:
 	if current_state:
 		current_state.exit()
 	
+	var old_state_name = current_state.name if current_state else ""
 	current_state = new_state
 	current_state.enter()
+	
+	state_changed.emit(current_state.name.to_lower(), old_state_name.to_lower())
 	# print("[FSM] 状态切换至: ", state_name)

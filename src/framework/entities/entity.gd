@@ -23,7 +23,8 @@ var current_health: float:
 signal health_changed(current_health: float, max_health: float)
 signal damaged(amount: float) # 传递受到的伤害数值
 signal died(entity: Entity)
-signal animation_requested(anim_name: String, is_high_priority: bool)
+signal animation_requested(anim_name: String, is_high_priority: bool) # 旧的动画请求，建议逐渐弃用
+signal fsm_state_changed(new_state: String, old_state: String) # 转发 FSM 信号，供 Visual 层使用
 
 func _ready() -> void:
 	_setup_health_component()
@@ -58,6 +59,8 @@ func _setup_mover_component() -> void:
 
 func _setup_fsm() -> void:
 	fsm = get_node_or_null("FSM")
+	if fsm:
+		fsm.state_changed.connect(func(n, o): fsm_state_changed.emit(n, o))
 
 func _setup_combat_components() -> void:
 	# 寻找 Hurtbox，它通常是 Area2D
