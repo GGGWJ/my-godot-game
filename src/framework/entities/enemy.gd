@@ -48,16 +48,20 @@ func _physics_process(delta: float) -> void:
 				var next_path_pos = pathfinding.get_next_path_position()
 				direction = (next_path_pos - global_position).normalized()
 				pathfinding.set_velocity(direction * stats.speed)
+				facing_direction = direction
 			else:
 				velocity = Vector2.ZERO
+				facing_direction = (player.global_position - global_position).normalized()
 				ability_controller.trigger_ability_by_idx(0)
 		else:
 			direction = (player.global_position - global_position).normalized()
 			var stop_dist = enemy_stats.stop_distance if enemy_stats else 10.0
 			if position.distance_squared_to(player.global_position) > stop_dist * stop_dist:
 				velocity = direction * stats.speed
+				facing_direction = direction
 			else:
 				velocity = Vector2.ZERO
+				facing_direction = direction
 				ability_controller.trigger_ability_by_idx(0)
 
 func _on_navigation_velocity_computed(safe_velocity: Vector2) -> void:

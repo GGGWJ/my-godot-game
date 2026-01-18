@@ -19,8 +19,12 @@ func _handle_movement_visuals() -> void:
 	else:
 		sprite.play("idle")
 	
+	var flip_target = entity.facing_direction.x
 	if abs(entity.velocity.x) > 0.1:
-		sprite.flip_h = entity.velocity.x < 0
+		flip_target = entity.velocity.x
+
+	if abs(flip_target) > 0.1:
+		sprite.flip_h = flip_target < 0
 
 func _play_visual_animation(anim_name: String) -> void:
 	sprite.play(anim_name)

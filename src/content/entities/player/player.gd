@@ -44,6 +44,8 @@ func _handle_input() -> void:
 	# 更新速度，物理移动在基类 move_and_slide() 中完成
 	if stats:
 		velocity = n_movement * stats.speed
+		if n_movement.length() > 0.1:
+			facing_direction = n_movement
 	else:
 		velocity = Vector2.ZERO
 

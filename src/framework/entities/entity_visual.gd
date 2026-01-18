@@ -66,3 +66,6 @@ func _show_hurt_effect() -> void:
 ## 公共视觉接口，供外部（如技能表现层）调用，避免直接耦合节点名
 func get_weapon_node() -> Node2D:
 	return get_node_or_null("Weapon") as Node2D
+
+func get_sprite_node() -> AnimatedSprite2D:
+	return get_node_or_null("AnimatedSprite2D") as AnimatedSprite2D

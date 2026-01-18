@@ -40,8 +40,13 @@ func _handle_movement_visuals(_delta: float) -> void:
 		sprite.play("idle")
 	
 	# 2. 处理翻转
+	# 优先通过当前移动速度判断
+	var flip_target = entity.facing_direction.x
 	if abs(vel.x) > 0.1:
-		var side = vel.x < 0
+		flip_target = vel.x
+		
+	if abs(flip_target) > 0.1:
+		var side = flip_target < 0
 		sprite.flip_h = side
 		if weapon:
 			weapon.flip_h = side

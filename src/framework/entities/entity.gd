@@ -6,6 +6,7 @@ extends CharacterBody2D
 var is_dead: bool = false
 var is_acting: bool = false
 var current_health: float
+var facing_direction: Vector2 = Vector2.RIGHT # 逻辑上的朝向
 
 signal health_changed(current_health: float, max_health: float)
 signal damaged(amount: float) # 传递受到的伤害数值

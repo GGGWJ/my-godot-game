@@ -7,10 +7,11 @@ extends AbilityComponent
 
 func _activate(context: AbilityContext):
 	var caster = context.caster
-	var sprite = caster.find_child("AnimatedSprite2D", true, false) as AnimatedSprite2D
+	var visual = caster.get_visual()
+	if not visual: return
 	
-	if not sprite:
-		return
+	var sprite = visual.get_sprite_node()
+	if not sprite: return
 
 	var end_time = Time.get_ticks_msec() + (duration * 1000)
 	
