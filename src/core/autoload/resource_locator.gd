@@ -4,8 +4,8 @@ extends Node
 
 var _play_scene: PlayScene = null
 
-var packed_play_scene: PackedScene = preload("res://scenes/play_scene.tscn")
-var packed_home_scene: PackedScene = preload("res://scenes/home_scene.tscn")
+var packed_play_scene: PackedScene = preload("res://src/scenes/play_scene/play_scene.tscn")
+var packed_home_scene: PackedScene = preload("res://src/scenes/home_scene/home_scene.tscn")
 
 
 

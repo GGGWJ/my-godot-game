@@ -1,21 +1,21 @@
 [gd_scene load_steps=35 format=4 uid="uid://b0itg3kq1ytwa"]
 
-[ext_resource type="Script" uid="uid://j0hdd2opi1f8" path="res://src/common/utils/follow_camera.gd" id="1_6ypx3"]
-[ext_resource type="PackedScene" uid="uid://658v4co7jd07" path="res://scenes/player.tscn" id="1_oxvvw"]
-[ext_resource type="Script" uid="uid://cy1benq6nlsnd" path="res://src/scenes/play_scene.gd" id="1_xhmxe"]
-[ext_resource type="PackedScene" uid="uid://cgq8wr81n0i2q" path="res://scenes/skeleton.tscn" id="3_6lhxs"]
-[ext_resource type="Texture2D" uid="uid://b44bnxj1e4lb0" path="res://assets/textures/Cute_Fantasy_Free/Tiles/Cliff_Tile.png" id="3_ljj0d"]
-[ext_resource type="Texture2D" uid="uid://dpvh5nka3u0dn" path="res://assets/textures/Cute_Fantasy_Free/Tiles/Path_Tile.png" id="4_lg5wg"]
-[ext_resource type="PackedScene" uid="uid://fyxlj564g3m8" path="res://scenes/demon.tscn" id="5_4ukpk"]
-[ext_resource type="Texture2D" uid="uid://bqkv13q5ao5s6" path="res://assets/textures/Cute_Fantasy_Free/Outdoor decoration/Outdoor_Decor_Free.png" id="5_st5yg"]
-[ext_resource type="Texture2D" uid="uid://diy5ecfns7yym" path="res://assets/textures/Cute_Fantasy_Free/Outdoor decoration/Bridge_Wood.png" id="8_lft4v"]
-[ext_resource type="Texture2D" uid="uid://tda5kdl7pqbp" path="res://assets/textures/Cute_Fantasy_Free/Outdoor decoration/Oak_Tree_Small.png" id="9_4ukpk"]
-[ext_resource type="Script" uid="uid://ct1xg3ebyhh8c" path="res://src/ui/hud/spell_bar.gd" id="11_22d1p"]
-[ext_resource type="PackedScene" uid="uid://df8ks0sgvfok0" path="res://scenes/ui/spell_button.tscn" id="11_y6jde"]
-[ext_resource type="Texture2D" uid="uid://bdfj577y36v26" path="res://assets/ui/Hearts/PNG/basic/background.png" id="13_vsxha"]
-[ext_resource type="Texture2D" uid="uid://u5djxpg3mgww" path="res://assets/ui/Hearts/PNG/basic/border.png" id="14_b6oq2"]
-[ext_resource type="Texture2D" uid="uid://bum08j1bgxo0k" path="res://assets/ui/Hearts/PNG/basic/heart.png" id="15_6635m"]
-[ext_resource type="Script" uid="uid://5txqjo7w8kog" path="res://src/ui/hud/player_health_bar.gd" id="16_b6oq2"]
+[ext_resource type="Script" uid="uid://cy1benq6nlsnd" path="res://src/scenes/play_scene/play_scene.gd" id="1_d3f3g"]
+[ext_resource type="Script" uid="uid://j0hdd2opi1f8" path="res://src/common/utils/follow_camera.gd" id="2_iwtdr"]
+[ext_resource type="PackedScene" uid="uid://658v4co7jd07" path="res://src/entities/player/player.tscn" id="3_xg1r3"]
+[ext_resource type="PackedScene" uid="uid://cgq8wr81n0i2q" path="res://src/entities/enemies/skeleton/skeleton.tscn" id="4_fid5c"]
+[ext_resource type="PackedScene" uid="uid://fyxlj564g3m8" path="res://src/entities/enemies/demon/demon.tscn" id="5_ksm61"]
+[ext_resource type="Texture2D" uid="uid://b44bnxj1e4lb0" path="res://assets/textures/Cute_Fantasy_Free/Tiles/Cliff_Tile.png" id="6_tgq2e"]
+[ext_resource type="Texture2D" uid="uid://dpvh5nka3u0dn" path="res://assets/textures/Cute_Fantasy_Free/Tiles/Path_Tile.png" id="7_cq0sl"]
+[ext_resource type="Texture2D" uid="uid://bqkv13q5ao5s6" path="res://assets/textures/Cute_Fantasy_Free/Outdoor decoration/Outdoor_Decor_Free.png" id="8_123xj"]
+[ext_resource type="Texture2D" uid="uid://diy5ecfns7yym" path="res://assets/textures/Cute_Fantasy_Free/Outdoor decoration/Bridge_Wood.png" id="9_6t2ow"]
+[ext_resource type="Texture2D" uid="uid://tda5kdl7pqbp" path="res://assets/textures/Cute_Fantasy_Free/Outdoor decoration/Oak_Tree_Small.png" id="10_cjgbj"]
+[ext_resource type="Script" uid="uid://ct1xg3ebyhh8c" path="res://src/ui/hud/spell_bar.gd" id="11_vqpvm"]
+[ext_resource type="PackedScene" uid="uid://df8ks0sgvfok0" path="res://src/ui/hud/spell_button/spell_button.tscn" id="12_rr87l"]
+[ext_resource type="Texture2D" uid="uid://bdfj577y36v26" path="res://assets/ui/Hearts/PNG/basic/background.png" id="13_auvxj"]
+[ext_resource type="Texture2D" uid="uid://u5djxpg3mgww" path="res://assets/ui/Hearts/PNG/basic/border.png" id="14_s17jo"]
+[ext_resource type="Texture2D" uid="uid://bum08j1bgxo0k" path="res://assets/ui/Hearts/PNG/basic/heart.png" id="15_ya21g"]
+[ext_resource type="Script" uid="uid://5txqjo7w8kog" path="res://src/ui/hud/player_health_bar.gd" id="16_g8oml"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_y6jde"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -24,7 +24,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8
 agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lg5wg"]
-texture = ExtResource("3_ljj0d")
+texture = ExtResource("6_tgq2e")
 0:0/0 = 0
 0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_y6jde")
 1:0/0 = 0
@@ -69,7 +69,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8
 agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_st5yg"]
-texture = ExtResource("4_lg5wg")
+texture = ExtResource("7_cq0sl")
 0:0/0 = 0
 0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_lft4v")
 1:0/0 = 0
@@ -108,7 +108,7 @@ navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_st5yg")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_os6ff"]
-texture = ExtResource("5_st5yg")
+texture = ExtResource("8_123xj")
 1:3/0 = 0
 2:3/0 = 0
 2:4/0 = 0
@@ -195,7 +195,7 @@ texture = ExtResource("5_st5yg")
 3:9/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_22d1p"]
-texture = ExtResource("8_lft4v")
+texture = ExtResource("9_6t2ow")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -228,7 +228,7 @@ texture = ExtResource("8_lft4v")
 8:3/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2oann"]
-texture = ExtResource("9_4ukpk")
+texture = ExtResource("10_cjgbj")
 2:0/0 = 0
 3:0/0 = 0
 4:0/0 = 0
@@ -283,40 +283,40 @@ unicode = 52
 events = [SubResource("InputEventKey_l2qwg")]
 
 [node name="PlayScene" type="Node2D" node_paths=PackedStringArray("screen_transition")]
-script = ExtResource("1_xhmxe")
+script = ExtResource("1_d3f3g")
 screen_transition = NodePath("CanvasLayer/ColorRect")
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("follow_target")]
 zoom = Vector2(5, 5)
-script = ExtResource("1_6ypx3")
+script = ExtResource("2_iwtdr")
 follow_target = NodePath("../player")
 
-[node name="player" parent="." instance=ExtResource("1_oxvvw")]
+[node name="player" parent="." instance=ExtResource("3_xg1r3")]
 z_index = 100
 position = Vector2(8, 46)
 
-[node name="Skeleton" parent="." instance=ExtResource("3_6lhxs")]
+[node name="Skeleton" parent="." instance=ExtResource("4_fid5c")]
 position = Vector2(-152, 31.999996)
 
-[node name="Skeleton3" parent="." instance=ExtResource("3_6lhxs")]
+[node name="Skeleton3" parent="." instance=ExtResource("4_fid5c")]
 position = Vector2(199.99998, 31.999996)
 
-[node name="Skeleton2" parent="." instance=ExtResource("3_6lhxs")]
+[node name="Skeleton2" parent="." instance=ExtResource("4_fid5c")]
 position = Vector2(18.999985, -89.99999)
 
-[node name="Skeleton4" parent="." instance=ExtResource("3_6lhxs")]
+[node name="Skeleton4" parent="." instance=ExtResource("4_fid5c")]
 position = Vector2(-40.000008, -7.999996)
 
-[node name="Skeleton5" parent="." instance=ExtResource("3_6lhxs")]
+[node name="Skeleton5" parent="." instance=ExtResource("4_fid5c")]
 position = Vector2(72.00001, -7.999996)
 
-[node name="Skeleton6" parent="." instance=ExtResource("3_6lhxs")]
+[node name="Skeleton6" parent="." instance=ExtResource("4_fid5c")]
 position = Vector2(-47.999992, 71.99999)
 
-[node name="Demon" parent="." instance=ExtResource("5_4ukpk")]
+[node name="Demon" parent="." instance=ExtResource("5_ksm61")]
 position = Vector2(136, 88)
 
-[node name="Demon2" parent="." instance=ExtResource("5_4ukpk")]
+[node name="Demon2" parent="." instance=ExtResource("5_ksm61")]
 position = Vector2(104, 120)
 
 [node name="Map" type="Node2D" parent="."]
@@ -383,7 +383,7 @@ offset_bottom = 1028.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(275, 130)
-script = ExtResource("11_22d1p")
+script = ExtResource("11_vqpvm")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/SpellBar"]
 layout_mode = 2
@@ -395,19 +395,19 @@ theme_override_constants/margin_bottom = 10
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/SpellBar/MarginContainer"]
 layout_mode = 2
 
-[node name="SpellButton" parent="CanvasLayer/Control/SpellBar/MarginContainer/HBoxContainer" instance=ExtResource("11_y6jde")]
+[node name="SpellButton" parent="CanvasLayer/Control/SpellBar/MarginContainer/HBoxContainer" instance=ExtResource("12_rr87l")]
 layout_mode = 2
 shortcut = SubResource("Shortcut_6635m")
 
-[node name="SpellButton2" parent="CanvasLayer/Control/SpellBar/MarginContainer/HBoxContainer" instance=ExtResource("11_y6jde")]
+[node name="SpellButton2" parent="CanvasLayer/Control/SpellBar/MarginContainer/HBoxContainer" instance=ExtResource("12_rr87l")]
 layout_mode = 2
 shortcut = SubResource("Shortcut_l2qwg")
 
-[node name="SpellButton3" parent="CanvasLayer/Control/SpellBar/MarginContainer/HBoxContainer" instance=ExtResource("11_y6jde")]
+[node name="SpellButton3" parent="CanvasLayer/Control/SpellBar/MarginContainer/HBoxContainer" instance=ExtResource("12_rr87l")]
 layout_mode = 2
 shortcut = SubResource("Shortcut_fe3mt")
 
-[node name="SpellButton4" parent="CanvasLayer/Control/SpellBar/MarginContainer/HBoxContainer" instance=ExtResource("11_y6jde")]
+[node name="SpellButton4" parent="CanvasLayer/Control/SpellBar/MarginContainer/HBoxContainer" instance=ExtResource("12_rr87l")]
 layout_mode = 2
 shortcut = SubResource("Shortcut_o21h6")
 
@@ -423,10 +423,10 @@ max_value = 113.0
 value = 50.0
 fill_mode = 3
 nine_patch_stretch = true
-texture_under = ExtResource("13_vsxha")
-texture_over = ExtResource("14_b6oq2")
-texture_progress = ExtResource("15_6635m")
-script = ExtResource("16_b6oq2")
+texture_under = ExtResource("13_auvxj")
+texture_over = ExtResource("14_s17jo")
+texture_progress = ExtResource("15_ya21g")
+script = ExtResource("16_g8oml")
 
 [node name="PauseBtn" type="Button" parent="CanvasLayer/Control"]
 layout_mode = 1

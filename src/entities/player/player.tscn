@@ -1,7 +1,7 @@
 [gd_scene load_steps=50 format=3 uid="uid://658v4co7jd07"]
 
 [ext_resource type="Texture2D" uid="uid://1mot2lsduok2" path="res://assets/textures/player/AnimationSheet_Character.png" id="1_7j80i"]
-[ext_resource type="Script" uid="uid://becf2c5pbtjn7" path="res://scripts/entity/player.gd" id="1_7omxl"]
+[ext_resource type="Script" uid="uid://becf2c5pbtjn7" path="res://src/entities/player/player.gd" id="1_7omxl"]
 [ext_resource type="Shader" uid="uid://d36k77idc43f0" path="res://src/common/shaders/entity.gdshader" id="2_hp4bs"]
 [ext_resource type="AudioStream" uid="uid://ctcx2lqo7vnxy" path="res://assets/audio/Super Dialogue Audio Pack v1/Step 2 - Audio Files/2 - Confirmation/Female/Karen Cenon/confirmation_1_karen.wav" id="2_ihjo1"]
 [ext_resource type="AudioStream" uid="uid://fxwcrkns7ryr" path="res://assets/audio/Super Dialogue Audio Pack v1/Step 2 - Audio Files/2 - Confirmation/Female/Karen Cenon/confirmation_2_karen.wav" id="3_dk1vr"]

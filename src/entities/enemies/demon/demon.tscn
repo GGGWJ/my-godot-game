@@ -1,15 +1,15 @@
 [gd_scene load_steps=40 format=3 uid="uid://fyxlj564g3m8"]
 
-[ext_resource type="Script" uid="uid://ddne0qg3wc4sl" path="res://scripts/entity/enemy.gd" id="1_pdsyd"]
+[ext_resource type="Script" uid="uid://ddne0qg3wc4sl" path="res://src/entities/base/enemy.gd" id="1_pdsyd"]
 [ext_resource type="Shader" uid="uid://d36k77idc43f0" path="res://src/common/shaders/entity.gdshader" id="2_ojon3"]
 [ext_resource type="Texture2D" uid="uid://dn8v6b21wgh87" path="res://assets/textures/Flying Demon 2D Pixel Art/Sprites/without_outline/DEATH.png" id="3_pdsyd"]
 [ext_resource type="Texture2D" uid="uid://cf3yl7gk7oo7h" path="res://assets/textures/Flying Demon 2D Pixel Art/Sprites/without_outline/IDLE.png" id="4_ojon3"]
 [ext_resource type="Texture2D" uid="uid://l15gilf3vplc" path="res://assets/textures/Flying Demon 2D Pixel Art/Sprites/without_outline/ATTACK.png" id="5_dc5ud"]
 [ext_resource type="Texture2D" uid="uid://duvhemovfxgjw" path="res://assets/textures/Flying Demon 2D Pixel Art/Sprites/without_outline/FLYING.png" id="6_02e83"]
-[ext_resource type="PackedScene" uid="uid://df7mjlhl8x386" path="res://scenes/hit_particles.tscn" id="7_mr2xe"]
+[ext_resource type="PackedScene" uid="uid://df7mjlhl8x386" path="res://src/common/vfx/hit_particles.tscn" id="7_mr2xe"]
 [ext_resource type="Script" uid="uid://dml80icbdg7ls" path="res://scripts/ability/core/ability_controller.gd" id="8_3pxp0"]
 [ext_resource type="PackedScene" uid="uid://buw0vxxhhtx3w" path="res://scenes/ability/fireball_ability.tscn" id="9_pdsyd"]
-[ext_resource type="Script" uid="uid://dxrpi2hjaj7tl" path="res://scripts/entity/pathfinding.gd" id="10_hrbwj"]
+[ext_resource type="Script" uid="uid://dxrpi2hjaj7tl" path="res://src/common/components/pathfinding.gd" id="10_hrbwj"]
 [ext_resource type="Script" uid="uid://biw5jtfjtac2i" path="res://resources/stats/enemy_stats.gd" id="11_stats"]
 
 [sub_resource type="Resource" id="SubResource_demon_stats"]

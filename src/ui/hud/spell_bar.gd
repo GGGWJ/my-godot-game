@@ -1,6 +1,6 @@
 extends PanelContainer
 
-@export var ability_button_scene: PackedScene = preload("res://scenes/ui/spell_button.tscn")
+@export var ability_button_scene: PackedScene = preload("res://src/ui/hud/spell_button/spell_button.tscn")
 @onready var container: HBoxContainer = $MarginContainer/HBoxContainer
 
 var _last_player: Player = null
